@@ -29,7 +29,6 @@ SRCS        =   $(SRC_DIR)/main.c \
 
 OBJS        =   $(SRCS:.c=.o)
 
-# Règle principale
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -41,12 +40,10 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "\033[1;32m$(NAME) compiled successfully!\033[0m"
 
-# Compilation des fichiers objets
 %.o: %.c
 	@echo "\033[0;34mCompiling $<...\033[0m"
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Nettoyage des fichiers objets
 clean:
 	@echo "\033[0;31mCleaning object files...\033[0m"
 	@rm -f $(OBJS)
@@ -55,7 +52,6 @@ clean:
 	@make clean -C $(MLX_PATH)
 	@echo "\033[1;32mObject files cleaned!\033[0m"
 
-# Nettoyage complet
 fclean: clean
 	@echo "\033[0;31mCleaning $(NAME)...\033[0m"
 	@rm -f $(NAME)
@@ -63,8 +59,6 @@ fclean: clean
 	@make fclean -C $(FT_PRINTF_PATH)
 	@echo "\033[1;32m$(NAME) cleaned!\033[0m"
 
-# Rebuild
 re: fclean all
 
-# Déclaration des règles phony
 .PHONY: all clean fclean re

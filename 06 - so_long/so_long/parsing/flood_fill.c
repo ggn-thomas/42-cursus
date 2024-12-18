@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:53:52 by thgaugai          #+#    #+#             */
-/*   Updated: 2024/12/18 10:36:52 by thgaugai         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:54:56 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	finish_check(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] != 'x' && map[y][x] != '1' && map[y][x] != 'X')
+			if (map[y][x] != 'x' && map[y][x] != '1' && map[y][x] != 'X'
+				&& map[y][x] != '0')
 			{
 				write(1, "Error\n", 6);
 				write(1, "No correct path found !\n", 24);
