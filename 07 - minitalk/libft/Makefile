@@ -45,6 +45,8 @@ SRCS =  ft_atoi.c\
         ft_putendl_fd.c\
         ft_putnbr_fd.c\
         ft_split.c\
+        ft_strcpy.c\
+        ft_strcat.c\
 
 SRCS_BONUS =    ft_lstnew_bonus.c\
                 ft_lstadd_front_bonus.c\
@@ -83,8 +85,4 @@ fclean: clean
 
 re: fclean all
 
-<<<<<<< HEAD
 .PHONY: re clean fclean all
-=======
-.PHONY: re clean fclean all
->>>>>>> 7925e06 (initial commit 42)

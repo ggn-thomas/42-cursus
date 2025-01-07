@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 11:41:32 by thomas            #+#    #+#             */
-/*   Updated: 2024/11/09 12:04:16 by thomas           ###   ########.fr       */
+/*   Created: 2024/07/13 22:23:11 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/07/16 10:53:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list *ft_lstlast(t_list *lst)
+char	*ft_strcpy(char *dest, char *src)
 {
-    t_list  tmp;
+	int	i;
 
-    if (!lst)
-        return (NULL);
-    tmp = lst;
-    while(tmp)
-        tmp = tmp->next;
-    return (tmp);
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

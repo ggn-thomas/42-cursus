@@ -68,14 +68,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j--;
 	return (ft_str(s1, i, j));
 }
-<<<<<<< HEAD
-
-#include <stdio.h>
-int	main()
-{
-	char	buffer[] = "abbbbThomas Gaugainbbbaaa";
-	char	set[] = "ab";
-	printf(ft_strtrim(buffer, set));
-}
-=======
->>>>>>> 7925e06 (initial commit 42)
