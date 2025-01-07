@@ -1,45 +1,30 @@
-NAME = minitalk
+SRCS = serveur.c client.c
+OBJS = $(SRCS:.c=.o)
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-LIBFT_PATH = ./libft
-FT_PRINTF_PATH = ./ft_printf
+all: server client
 
-SRV_SRC = serveur.c
-CLT_SRC = client.c
+server : serveur.o libft
+		$(CC) -o $@ $< -Llibft -lft
+		@echo "\033[1;32m$ SERVEUR compiled successfully!\033[0m"
 
-SRV_OBJ = $(SRV_SRC:.c=.o)
-CLT_OBJ = $(CLT_SRC:.c=.o)
-
-all: client serveur
-
+client : client.o libft
+		$(CC) -o $@ $< -Llibft -lft
+		@echo "\033[1;32m$ CLIENT compiled successfully!\033[0m"
 %.o: %.c
-	$(CC) $(CFLAGS) -Iincludes -Ilibft -Ift_printf -c $< -o $@
+		$(CC) $(CFLAGS) -c $< -o $@
+libft :
+		make -C libft
 
-client: $(CLT_OBJ)
-	@make -C $(LIBFT_PATH)
-	@make -C $(FT_PRINTF_PATH)
-	$(CC) $(CLT_OBJ) -L$(LIBFT_PATH) -L$(FT_PRINTF_PATH) -lft -lft_printf -o $@
+clean :
+		rm -f $(OBJS)
+		make -C libft clean
 
-serveur: $(SRV_OBJ)
-	@make -C $(LIBFT_PATH)
-	@make -C $(FT_PRINTF_PATH)
-	$(CC) $(SRV_OBJ) -L$(LIBFT_PATH) -L$(FT_PRINTF_PATH) -lft -lft_printf -o $@
+fclean : clean
+		rm -f server client libft/libft.a
 
-clean:
-	rm -f $(SRV_OBJ) $(CLT_OBJ)
-	@make clean -C $(LIBFT_PATH)
-	@make clean -C $(FT_PRINTF_PATH)
+re : fclean all
 
-fclean: clean
-	rm -f client serveur
-	@make fclean -C $(LIBFT_PATH)
-	@make fclean -C $(FT_PRINTF_PATH)
-
-
-re: fclean all
-
-libft:
-	@make -C $(LIBFT_PATH)
-
-.PHONY: all clean fclean re libft
+.PHONY: all libft clean fclean re
