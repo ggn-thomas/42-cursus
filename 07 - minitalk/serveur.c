@@ -6,61 +6,51 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:20:05 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/07 18:07:47 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:58:51 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/libft.h"
 
-#include <stdio.h>
-void	translate_message(int signint)
+void	handle_signint(int signint, siginfo_t *info, void *context)
 {
 	static int	counter = 0;
-	static char	*message = NULL;
-	static char	char_received = 0;
-	char	tmp[2];
+	static unsigned char	char_received = 0;
+	static pid_t		pid_client = 0;
 
-	if (!message)
-		message = ft_strdup("");
-	char_received <<= 1;
+	(void)context;
+	if (!pid_client)
+		pid_client = info->si_pid;
 	if (signint == SIGUSR1)
 		char_received |= 1;
-	counter++;
-	if (counter == 8)
+	if (++counter == 8)
 	{
-		tmp[0] = char_received;
-		tmp[1] = '\0';
-		message = ft_strjoin(message, tmp);
-		if (char_received == '\0')
-		{
-			ft_putstr_fd(message, 1);
-			ft_putchar_fd('\n', 1);
-			free(message);
-			message = NULL;
-		}
-		char_received = 0;
 		counter = 0;
+		if (!char_received)
+		{
+			kill(pid_client, SIGUSR2);
+			pid_client = 0;
+			return ;
+		}
+		ft_putchar_fd(char_received, 1);
+		char_received = 0;
+		kill(pid_client, SIGUSR1);
 	}
-}
-
-void handle_signint(int signint)
-{
-	if (signint == SIGUSR1 || signint == SIGUSR2)
-		translate_message(signint);
+	else
+		char_received <<= 1;
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
-	pid_t	pid_server;
+	pid_t				pid_server;
 
 	pid_server = getpid();
 	ft_putstr_fd("Server pid : ", 1);
 	ft_putnbr_fd((int)pid_server, 1);
 	ft_putchar_fd('\n', 1);
-	sa.sa_handler = handle_signint;
-	sa.sa_flags = 0;
+	sa.sa_sigaction = handle_signint;
+	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, 0);
 	sigaction(SIGUSR2, &sa, 0);
 	while (1)

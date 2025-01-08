@@ -6,16 +6,31 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/07 18:14:56 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:57:40 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include "libft/libft.h"
+
+void	check_reception(int signint)
+{
+	int counter;
+
+	ft_putnbr_fd(signint, 1);
+	counter = 0;
+	if (signint == SIGUSR1)
+		counter++;
+	else
+	{
+		ft_putstr_fd("The message has been correctly received by the server, the number of character was ", 1);
+		ft_putnbr_fd(counter, 1);
+		ft_putchar_fd('\n', 1);
+		}
+}
 
 void	ft_send_message(pid_t pid, char *message)
 {
-	int	i;
+	int				i;
 	unsigned int	j;
 
 	i = 0;
@@ -38,12 +53,14 @@ void	ft_send_message(pid_t pid, char *message)
 
 int	main(int ac, char **av)
 {
-	pid_t	pid_server;
-	(void)ac;
+	pid_t pid_server;
+
 	if (ac != 3 || !ft_strlen(av[2]))
 		return (1);
 	pid_server = (pid_t)ft_atoi(av[1]);
 	ft_send_message(pid_server, av[2]);
+	signal(SIGUSR1, check_reception);
+	signal(SIGUSR2, check_reception);
 	while (1)
 		pause();
 	return (0);
