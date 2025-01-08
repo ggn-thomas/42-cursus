@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/08 16:16:55 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:51:19 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	check_reception(int signint)
 {
-	int counter;
+	static int	counter = 0;
 
-	ft_putnbr_fd(signint, 1);
-	counter = 0;
 	if (signint == SIGUSR1)
 		counter++;
-	else
+	else if (signint == SIGUSR2)
 	{
-		ft_putstr_fd("The message has been correctly received by the server, the number of character was ", 1);
+		ft_putstr_fd("The message has been correctly received by the server,
+			the number of character was ", 1);
 		ft_putnbr_fd(counter, 1);
 		ft_putchar_fd('\n', 1);
+		counter = 0;
 	}
 }
 
@@ -34,7 +34,6 @@ void	ft_send_message(pid_t pid, char *message)
 	unsigned int	j;
 
 	i = 0;
-	j = 0;
 	while (message[i])
 	{
 		j = 0;
@@ -48,6 +47,13 @@ void	ft_send_message(pid_t pid, char *message)
 			usleep(100);
 		}
 		i++;
+	}
+	j = 0;
+	while (j < 8)
+	{
+		kill(pid, SIGUSR2);
+		j++;
+		usleep(100);
 	}
 }
 

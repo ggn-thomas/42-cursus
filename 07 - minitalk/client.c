@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/08 15:40:31 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:41:24 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_send_message(pid_t pid, char *message)
 	unsigned int	j;
 
 	i = 0;
-	j = 0;
 	while (message[i])
 	{
 		j = 0;
@@ -33,6 +32,13 @@ void	ft_send_message(pid_t pid, char *message)
 		}
 		i++;
 	}
+	j = 0;
+	while (j < 8)
+	{
+		kill(pid, SIGUSR2);
+		j++;
+		usleep(100);
+	}
 }
 
 int	main(int ac, char **av)
@@ -43,7 +49,4 @@ int	main(int ac, char **av)
 		return (1);
 	pid_server = (pid_t)ft_atoi(av[1]);
 	ft_send_message(pid_server, av[2]);
-	while (1)
-		pause();
-	return (0);
 }

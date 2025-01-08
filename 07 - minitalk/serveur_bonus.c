@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   serveur_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:20:05 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/08 16:13:20 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:50:33 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	handle_signint(int signint, siginfo_t *info, void *context)
 	(void)context;
 	if (!pid_client)
 		pid_client = info->si_pid;
-	char_received <<= 1;
-	if (signint == SIGUSR1)
-		char_received |= 1;
+	char_received |= (signint == SIGUSR1);
 	if (++counter == 8)
 	{
 		counter = 0;
@@ -37,6 +35,8 @@ void	handle_signint(int signint, siginfo_t *info, void *context)
 		char_received = 0;
 		kill(pid_client, SIGUSR1);
 	}
+	else
+		char_received <<= 1;
 }
 
 int	main(void)
