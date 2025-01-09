@@ -6,35 +6,39 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+LIBFT = libft/libft.a
 
-all: server client server_bonus client_bonus
+all: server client
 
-server : serveur.o libft
-		$(CC) -o $@ $< -Llibft -lft
-		@echo "\033[1;32m$ SERVEUR compiled successfully!\033[0m"
+server: serveur.o $(LIBFT)
+	$(CC) -o $@ $< -Llibft -lft
+	@echo "\033[1;32m$ SERVEUR compiled successfully!\033[0m"
 
-client : client.o libft
-		$(CC) -o $@ $< -Llibft -lft
-		@echo "\033[1;32m$ CLIENT compiled successfully!\033[0m"
+client: client.o $(LIBFT)
+	$(CC) -o $@ $< -Llibft -lft
+	@echo "\033[1;32m$ CLIENT compiled successfully!\033[0m"
 
-server_bonus : serveur_bonus.o libft
-		$(CC) -o $@ $< -Llibft -lft
+bonus: server_bonus client_bonus
 
-client_bonus : client_bonus.o libft
-		$(CC) -o $@ $< -Llibft -lft
+server_bonus: serveur_bonus.o $(LIBFT)
+	$(CC) -o $@ $< -Llibft -lft
+	@echo "\033[1;32m$ SERVER_BONUS compiled successfully!\033[0m"
 
-%.o: %.c
-		$(CC) $(CFLAGS) -c $< -o $@
-libft :
-		make -C libft
+client_bonus: client_bonus.o $(LIBFT)
+	$(CC) -o $@ $< -Llibft -lft
+	@echo "\033[1;32m$ CLIENT_BONUS compiled successfully!\033[0m"
 
-clean :
-		rm -f $(OBJS) $(OBJS_BONUS)
-		make -C libft clean
+$(LIBFT):
+	@make -C libft
 
-fclean : clean
-		rm -f server client server_bonus client_bonus libft/libft.a
+clean:
+	rm -f $(OBJS) $(OBJS_BONUS)
+	@make -C libft clean
 
-re : fclean all
+fclean: clean
+	rm -f server client server_bonus client_bonus
+	@make -C libft fclean
 
-.PHONY: all libft clean fclean re
+re: fclean all
+
+.PHONY: all bonus clean fclean re

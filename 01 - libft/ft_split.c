@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:48:40 by thgaugai          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/27 00:48:31 by thomas           ###   ########.fr       */
-=======
-/*   Updated: 2024/10/17 14:02:02 by thomas           ###   ########.fr       */
->>>>>>> 7925e06 (initial commit 42)
+/*   Updated: 2024/12/03 10:20:25 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +61,26 @@ static char	**ft_fill(char **dest, int i, int len, char const *s)
 	return (dest);
 }
 
+static int	ft_check(char const *s, char c)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = ft_strlen(s);
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			j++;
+		i++;
+	}
+	if (j == len)
+		return (0);
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**dest;
@@ -73,6 +89,8 @@ char	**ft_split(char const *s, char c)
 
 	len = 0;
 	i = 0;
+	if (!(ft_check(s, c)) || s == NULL)
+		return (NULL);
 	dest = malloc(sizeof(char *) * (ft_count_word((char *)s, c) + 1));
 	if (!dest)
 		return (NULL);
@@ -81,10 +99,9 @@ char	**ft_split(char const *s, char c)
 		if (*s != c)
 		{
 			len = ft_count_letter((char *)s, c);
-			if (!ft_fill(dest, i, len, s))
+			if (!ft_fill(dest, i++, len, s))
 				return (NULL);
 			s += len;
-			i++;
 		}
 		else
 			s++;
@@ -92,36 +109,3 @@ char	**ft_split(char const *s, char c)
 	dest[i] = NULL;
 	return (dest);
 }
-<<<<<<< HEAD
-#include "libft.h"
-#include <stdio.h>
-
-int main(int argc, char **argv)
-{
-	(void)argc;
-    char **result;
-    int i = 0;
-
-    result = ft_split(argv[1], argv[2][0]);
-
-    while (result[i])
-    {
-        printf("mot %d: %s\n", i + 1, result[i]);
-        i++;
-    }
-    i = 0;
-    while (result[i])
-    {
-        free(result[i]);
-        i++;
-    }
-    free(result);
-
-    return (0);
-}
-
-
-
-      
-=======
->>>>>>> 7925e06 (initial commit 42)

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/08 17:51:19 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:14:35 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	check_reception(int signint)
 		counter++;
 	else if (signint == SIGUSR2)
 	{
-		ft_putstr_fd("The message has been correctly received by the server,
-			the number of character was ", 1);
+		ft_putstr_fd("The message has been correctly received by ", 1);
+		ft_putstr_fd("the server, the number of character was ", 1);
 		ft_putnbr_fd(counter, 1);
 		ft_putchar_fd('\n', 1);
 		counter = 0;
+		exit(0);
 	}
 }
 
@@ -59,7 +60,7 @@ void	ft_send_message(pid_t pid, char *message)
 
 int	main(int ac, char **av)
 {
-	pid_t pid_server;
+	pid_t	pid_server;
 
 	if (ac != 3 || !ft_strlen(av[2]))
 		return (1);

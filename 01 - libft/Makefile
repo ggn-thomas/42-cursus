@@ -83,8 +83,4 @@ fclean: clean
 
 re: fclean all
 
-<<<<<<< HEAD
 .PHONY: re clean fclean all
-=======
-.PHONY: re clean fclean all
->>>>>>> 7925e06 (initial commit 42)

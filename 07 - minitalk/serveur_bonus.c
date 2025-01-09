@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:20:05 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/08 17:50:33 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:12:28 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	handle_signint(int signint, siginfo_t *info, void *context)
 {
-	static int	counter = 0;
+	static int				counter = 0;
 	static unsigned char	char_received = 0;
-	static pid_t		pid_client = 0;
+	static pid_t			pid_client = 0;
 
 	(void)context;
 	if (!pid_client)
@@ -46,7 +46,7 @@ int	main(void)
 
 	pid_server = getpid();
 	ft_putstr_fd("Server pid : ", 1);
-	ft_putnbr_fd((int)pid_server, 1);
+	ft_putnbr_fd(pid_server, 1);
 	ft_putchar_fd('\n', 1);
 	sa.sa_sigaction = handle_signint;
 	sa.sa_flags = SA_SIGINFO;
