@@ -6,11 +6,11 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:20:05 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/09 09:43:46 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:01:03 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	handle_signint(int signint, siginfo_t *info, void *context)
 {
