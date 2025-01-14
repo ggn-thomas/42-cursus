@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/09 09:29:41 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:39:05 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ int	main(int ac, char **av)
 	if (ac != 3 || !ft_strlen(av[2]))
 		return (1);
 	pid_server = (pid_t)ft_atoi(av[1]);
+	if (pid_server < 0)
+		return (1);
 	ft_send_message(pid_server, av[2]);
 }

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 09:19:54 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/09 13:01:08 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:39:19 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	main(int ac, char **av)
 	pid_server = (pid_t)ft_atoi(av[1]);
 	signal(SIGUSR1, check_reception);
 	signal(SIGUSR2, check_reception);
+	if (pid_server < 0)
+		return (1);
 	ft_send_message(pid_server, av[2]);
 	while (1)
 		pause();
