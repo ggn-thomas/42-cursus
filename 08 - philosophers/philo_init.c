@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/15 11:16:08 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:34:16 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ void	philo_init(t_data *data)
 		ph[i].dt = *data;
 		ph[i].fork_letf = &data->fork[i + 1];
 		ph[i].is_eating = false;
+		ph[i].last_meal = 0;
+		ph[i].nb_meal = 0;
 		if (i == 0)
 		{
 			ph[i].fork_right = &data->fork[data->nb_philo];
-			printf("id : %d | fork left : %d | fork right : %d\n", ph[i].id, i + 1 , data->nb_philo);
+			//printf("id : %d | fork left : %d | fork right : %d\n", ph[i].id, i + 1 , data->nb_philo);
 		}
 		else
 		{
 			ph[i].fork_right = &data->fork[i];
-			printf("id : %d | fork left : %d | fork right : %d\n", ph[i].id, i + 1 , i);
+			//printf("id : %d | fork left : %d | fork right : %d\n", ph[i].id, i + 1 , i);
 		}
 	}
 }
@@ -50,6 +52,7 @@ void	var_init(char **av)
 	data.time_to_die = ft_atoi(av[2]);
 	data.time_to_eat = ft_atoi(av[3]);
 	data.time_to_sleep = ft_atoi(av[4]);
+	data.time_to_start = 0;
 	data.fork = malloc(sizeof(pthread_mutex_t) * data.nb_philo);
 	if (!data.fork)
 		return ;
@@ -65,23 +68,18 @@ void	var_init(char **av)
 void	thread_init(t_data *data, t_philo *ph)
 {
 	int	i;
-	int	stop;
 
-	stop = data->nb_philo;
-	if (data->nb_philo % 2 != 0)
-		stop -= 1;
-	else
-		stop = data->nb_philo;
 	i = 0;
-	while (i < stop)
+	data->time_to_start = get_time();
+	while (i <= data->nb_philo)
 	{
+		ph[i].start_time = data->time_to_start;
 		if (i % 2 != 0)
-		{
-			if (pthread_create(ph[i]->tid, NULL, routine, ph[i]) != 0)
-				return ;
-		}
+			ph[i].is_eating = true;
 		else
-			routine_sleep(ph[i]);
+			ph[i].is_eating = false;
+		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
+			return ;
 		i++;
 	}
 }
