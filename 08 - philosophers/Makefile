@@ -6,7 +6,7 @@ SRCS =	ft_atoi.c\
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror
+CFLAGS = -Wall -Werror -Wextra
 
 NAME = philosophers
 
@@ -14,10 +14,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@echo "\033[1;32mPHILOSOPHERS compiled successfully!\033[0m"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
-	@echo "\033[1;32mPHILOSOPHERS compiled successfully!\033[0m"
 
 clean:
 	rm -f $(OBJS)
@@ -28,4 +28,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
