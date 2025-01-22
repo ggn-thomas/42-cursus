@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:42:09 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/13 10:15:41 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:32:01 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,23 @@ unsigned char	reverse_bits(unsigned char octet)
 	return (r);
 
 }
+
+unsigned char	swap_bits(unsigned char octet)
+{
+	return ((octet << 4 | octet >> 4));
+}
+
+unsigned char print_bits(unsigned char octet)
+{
+	int	i = 128;
+	while (i)
+	{
+		(octet & i) ? write(1, "1", 1) : write(1, "0", 1);
+		i = i /2;
+	}
+}
+
+
 
 int	main(void)
 {

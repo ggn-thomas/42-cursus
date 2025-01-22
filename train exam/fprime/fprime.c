@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:26:31 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/10 10:49:21 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:54:17 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	fprime(unsigned int nb)
 		}
 	}
 }
+
+/*
+- je vérifie si le nb est égale à 1
+- sinon -> je commence avec 2 (le + petit nb premier)
+- boucle tant que le nb est supérieur à 1
+- si nb % prime = 0, alors c'est un nb premier donc je l'affiche
+- je divise le nb par le nb premier
+- si le nb est supérieur à 1 -> "*"
+- je décremente prime
+
+
+*/
 
 int	main(int ac, char **av)
 {
