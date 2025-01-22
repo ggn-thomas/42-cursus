@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/20 11:39:04 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/22 09:39:01 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <stdio.h>
 # include <unistd.h>
 
+# define FORK "has taken a fork"
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define DEAD "died"
+
 typedef struct	s_data
 {
 	int	time_to_die;
@@ -30,6 +36,7 @@ typedef struct	s_data
 	int	nb_philo;
 	int	someone_died;
 	pthread_mutex_t	*mutex_death;
+	pthread_mutex_t	*mutex_print;
 	pthread_mutex_t	*fork;
 }	t_data;
 
@@ -41,15 +48,18 @@ typedef struct	s_philo
 	int	last_meal;
 	int	nb_meal;
 	int	start_time;
-	t_data	dt;
+	t_data	*dt;
 	pthread_t	tid;
 }	t_philo;
 
 
 int	ft_atoi(char *nptr);
-int	get_time(void);
+long long	get_time(void);
 void	ft_usleep(int time);
 void	*routine(void *arg);
 void	end_thread(t_philo *philo, t_data *data);
+int check_death(t_philo *philo);
+void	check(t_philo *philo);
+void	print_action(t_philo *philo, char *action);
 
 #endif

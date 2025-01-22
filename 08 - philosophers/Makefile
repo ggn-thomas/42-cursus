@@ -1,7 +1,7 @@
-SRCS =	ft_atoi.c\
-		philo_init.c\
+SRCS =	philo_init.c\
 		routine.c\
-		utils.c
+		utils.c\
+		check.c\
 
 OBJS = $(SRCS:.c=.o)
 

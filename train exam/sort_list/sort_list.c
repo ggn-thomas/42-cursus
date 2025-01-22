@@ -19,7 +19,7 @@ t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 
 	stock = 0;
 	tmp = lst; //sert à conserver le premier élément de la liste.
-	while (lst && lst->data)
+	while (lst && lst->next)
 	{
 		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
