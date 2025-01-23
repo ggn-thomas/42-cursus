@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/23 14:09:34 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:05:08 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	someone_died(t_data *data)
+{
+	int	status;
+
+	pthread_mutex_lock(data->mutex_death);
+	status = data->someone_died;
+	pthread_mutex_unlock(data->mutex_death);
+	return (status);
+}
+
 
 int check_death(t_philo *philo)
 {
@@ -30,7 +41,7 @@ int check_death(t_philo *philo)
 }
 
 
-void	check(t_philo *philo)
+void	check(t_philo *philo, t_data *dt)
 {
 	int	i;
 
@@ -41,11 +52,10 @@ void	check(t_philo *philo)
 		{
 			if (check_death(&philo[i]))
 			{
-				philo->dt->someone_died = 1;
+				dt->someone_died = 1;
 				return ;
 			}
-			usleep(150);
+			usleep(100);
 		}
-		usleep(1000);
 	}
 }

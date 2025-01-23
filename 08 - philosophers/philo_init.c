@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/23 14:01:46 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:06:04 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	thread_init(data, philo);
-	check(philo);
+	check(philo, data);
 	end_thread(philo, data);
 	return (0);
 }

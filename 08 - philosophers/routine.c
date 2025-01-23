@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/23 13:57:55 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:11:08 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,29 @@ void	print_action(t_philo *philo, char *action)
 	long int	current_time;
 
 	pthread_mutex_lock(philo->dt->mutex_print);
-	current_time = get_time() - philo->start_time;
-	printf("%ld %d %s\n", current_time, philo->id, action);
+	if (!philo->dt->someone_died)
+	{
+		current_time = get_time() - philo->start_time;
+		printf("%ld %d %s\n", current_time, philo->id, action);
+	}
 	pthread_mutex_unlock(philo->dt->mutex_print);
 }
 
 void	is_eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_left);
+	if (someone_died(philo->dt))
+	{
+		pthread_mutex_unlock(philo->fork_left);
+		return ;
+	}
 	print_action(philo, FORK);
 	pthread_mutex_lock(philo->fork_right);
+	if (someone_died(philo->dt))
+	{
+		pthread_mutex_unlock(philo->fork_right);
+		return ;
+	}
 	print_action(philo, FORK);
 	print_action(philo, EAT);
 	philo->last_meal = get_time();
@@ -51,7 +64,7 @@ void	*routine(void *arg)
 	philo->last_meal = get_time();
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
-	while (!philo->dt->someone_died)
+	while (!someone_died(philo->dt))
 	{
 		is_eating(philo);
 		is_sleeping_thinking(philo);
