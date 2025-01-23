@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/23 11:33:06 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:57:55 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	is_sleeping_thinking(t_philo *philo)
 	ft_usleep(philo->dt->time_to_sleep);
 	print_action(philo, THINK);
 }
-
 
 void	*routine(void *arg)
 {
