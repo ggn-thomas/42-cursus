@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/22 09:47:39 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:10:12 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_philo	*philo_init(t_data *data)
 		ph[i].fork_left = &data->fork[i];
 		ph[i].last_meal = 0;
 		ph[i].nb_meal = 0;
+		ph[i].dead = 0;
 		if (i == 0)
 			ph[i].fork_right = &data->fork[data->nb_philo - 1];
 		else
@@ -54,10 +55,12 @@ t_data	*var_init(char **av)
 	data->mutex_death = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_death)
 		return (NULL);
+	if (pthread_mutex_init(data->mutex_death, NULL) != 0)
+		return (NULL);
 	data->mutex_print = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_print)
 		return (NULL);
-	if (pthread_mutex_init(data->mutex_death, NULL) != 0)
+	if (pthread_mutex_init(data->mutex_print, NULL) != 0)
 		return (NULL);
 	data->fork = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->fork)

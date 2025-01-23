@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:21:03 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/22 10:40:54 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:10:27 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	end_thread(t_philo *philo, t_data *data)
 		pthread_mutex_destroy(&data->fork[i]);
 	i = -1;
 	while (i++ < data->nb_philo)
-		pthread_join(philo->tid, NULL);
+		pthread_join(philo[i].tid, NULL);
 	pthread_mutex_destroy(data->mutex_death);
 	pthread_mutex_destroy(data->mutex_print);
 	free(data->fork);
 	free(data->mutex_death);
 	free(data->mutex_print);
+	free(data);
 	free(philo);
 }
 

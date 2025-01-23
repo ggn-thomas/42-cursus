@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/22 09:39:01 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:10:05 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_philo
 	int	last_meal;
 	int	nb_meal;
 	int	start_time;
+	int	dead;
 	t_data	*dt;
 	pthread_t	tid;
 }	t_philo;

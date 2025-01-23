@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/22 10:29:12 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:32:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int check_death(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dt->mutex_death);
-	if (get_time() - philo->last_meal >= philo->dt->time_to_die && philo->nb_meal > 0)
+	if (get_time() - philo->last_meal >= philo->dt->time_to_die)
 	{
+		philo->dt->someone_died = 1;
+		print_action(philo, DEAD);
 		pthread_mutex_unlock(philo->dt->mutex_death);
 		return (1);
 	}
@@ -34,12 +36,8 @@ void	check(t_philo *philo)
 		while (++i < philo->dt->nb_philo)
 		{
 			if (check_death(&philo[i]))
-			{
-				philo[i].dt->someone_died = 1;
-				print_action(&philo[i], DEAD);
 				return ;
-			}
-		usleep(100);
+			usleep(150);
 		}
 	}
 }

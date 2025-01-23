@@ -6,7 +6,7 @@ SRCS =	philo_init.c\
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 NAME = philosophers
 
