@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/23 17:06:04 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/24 17:37:57 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_philo	*philo_init(t_data *data)
 {
-	int	i;
+	int		i;
 	t_philo	*ph;
 
 	ph = malloc(sizeof(t_philo) * data->nb_philo);
@@ -40,7 +40,7 @@ t_philo	*philo_init(t_data *data)
 t_data	*var_init(char **av)
 {
 	t_data	*data;
-	int	i;
+	int		i;
 
 	i = -1;
 	data = malloc(sizeof(t_data));
@@ -50,6 +50,10 @@ t_data	*var_init(char **av)
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
+	if (av[5])
+		data->meal_required = ft_atoi(av[5]);
+	else
+		data->meal_required = 0;
 	data->time_to_start = 0;
 	data->someone_died = 0;
 	data->mutex_death = malloc(sizeof(pthread_mutex_t));
@@ -80,9 +84,10 @@ void	thread_init(t_data *data, t_philo *ph)
 
 	i = 0;
 	data->time_to_start = get_time();
+	printf("start time : %ldms\n", get_time());
 	while (i < data->nb_philo)
 	{
-		ph[i].start_time = data->time_to_start;
+		//ph[i].start_time = data->time_to_start;
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
 			return ;
 		i++;
@@ -94,8 +99,9 @@ int	main(int ac, char **av)
 	t_data	*data;
 	t_philo	*philo;
 
-	if (ac != 5)
-		return (1);
+	//if (ac != 6)
+	//	return (1);
+	(void)ac;
 	data = var_init(av);
 	if (!data)
 	{

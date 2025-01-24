@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/23 17:05:08 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/24 17:13:03 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	someone_died(t_data *data)
 
 int check_death(t_philo *philo)
 {
-	int	current_time;
+	long int	current_time;
 
 	pthread_mutex_lock(philo->dt->mutex_death);
 	current_time = get_time() - philo->last_meal;
@@ -44,10 +44,12 @@ int check_death(t_philo *philo)
 void	check(t_philo *philo, t_data *dt)
 {
 	int	i;
+	int	all_ate;
 
-	while(1)
+	while(!dt->someone_died)
 	{
 		i = -1;
+		all_ate = 1;
 		while (++i < philo->dt->nb_philo)
 		{
 			if (check_death(&philo[i]))
@@ -55,7 +57,15 @@ void	check(t_philo *philo, t_data *dt)
 				dt->someone_died = 1;
 				return ;
 			}
-			usleep(100);
+			if (philo[i].nb_meal < dt->meal_required && dt->meal_required > 0)
+				all_ate = 0;
 		}
+		if (dt->meal_required > 0 && all_ate)
+		{
+			printf("All the philosophers have finished eating !\n");
+			dt->someone_died = 1;
+			return ;
+		}
+		usleep(1000);
 	}
 }

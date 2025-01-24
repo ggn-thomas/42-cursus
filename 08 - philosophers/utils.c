@@ -6,18 +6,18 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:21:03 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/23 10:10:27 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:42:06 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long long	get_time(void)
+long int	get_time(void)
 {
 	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
 void	end_thread(t_philo *philo, t_data *data)
@@ -28,7 +28,7 @@ void	end_thread(t_philo *philo, t_data *data)
 	while (++i < data->nb_philo)
 		pthread_mutex_destroy(&data->fork[i]);
 	i = -1;
-	while (i++ < data->nb_philo)
+	while (++i < data->nb_philo)
 		pthread_join(philo[i].tid, NULL);
 	pthread_mutex_destroy(data->mutex_death);
 	pthread_mutex_destroy(data->mutex_print);
@@ -39,13 +39,14 @@ void	end_thread(t_philo *philo, t_data *data)
 	free(philo);
 }
 
-void	ft_usleep(int ms)
+int	ft_usleep(long int ms)
 {
-	long long	current_time;
+	long int	current_time;
 
 	current_time = get_time();
-	while (get_time() - current_time < ms)
+	while ((get_time() - current_time) < ms)
 		usleep(150);
+	return (1);
 }
 
 int	ft_atoi(char *nptr)

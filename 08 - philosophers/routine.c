@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/23 17:11:08 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/24 17:37:36 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	print_action(t_philo *philo, char *action)
 	pthread_mutex_lock(philo->dt->mutex_print);
 	if (!philo->dt->someone_died)
 	{
-		current_time = get_time() - philo->start_time;
-		printf("%ld %d %s\n", current_time, philo->id, action);
+		printf("%ldms | %ldms\n", get_time(), philo->dt->time_to_start);
+		current_time = get_time() - philo->dt->time_to_start;
+		printf("%ldms %d %s\n", current_time, philo->id, action);
 	}
 	pthread_mutex_unlock(philo->dt->mutex_print);
 }
@@ -28,18 +29,8 @@ void	print_action(t_philo *philo, char *action)
 void	is_eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_left);
-	if (someone_died(philo->dt))
-	{
-		pthread_mutex_unlock(philo->fork_left);
-		return ;
-	}
 	print_action(philo, FORK);
 	pthread_mutex_lock(philo->fork_right);
-	if (someone_died(philo->dt))
-	{
-		pthread_mutex_unlock(philo->fork_right);
-		return ;
-	}
 	print_action(philo, FORK);
 	print_action(philo, EAT);
 	philo->last_meal = get_time();
