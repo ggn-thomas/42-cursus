@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/24 17:37:36 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:50:09 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	print_action(t_philo *philo, char *action)
 	pthread_mutex_lock(philo->dt->mutex_print);
 	if (!philo->dt->someone_died)
 	{
-		printf("%ldms | %ldms\n", get_time(), philo->dt->time_to_start);
-		current_time = get_time() - philo->dt->time_to_start;
+		current_time = get_time() - philo->thread_start;
 		printf("%ldms %d %s\n", current_time, philo->id, action);
 	}
 	pthread_mutex_unlock(philo->dt->mutex_print);

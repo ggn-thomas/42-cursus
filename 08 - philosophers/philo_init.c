@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/24 17:37:57 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:44:48 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_philo	*philo_init(t_data *data)
 		ph[i].last_meal = 0;
 		ph[i].nb_meal = 0;
 		ph[i].dead = 0;
+		ph[i].thread_start = 0;
 		if (i == 0)
 			ph[i].fork_right = &data->fork[data->nb_philo - 1];
 		else
@@ -54,7 +55,7 @@ t_data	*var_init(char **av)
 		data->meal_required = ft_atoi(av[5]);
 	else
 		data->meal_required = 0;
-	data->time_to_start = 0;
+	data->start = 0;
 	data->someone_died = 0;
 	data->mutex_death = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_death)
@@ -83,11 +84,11 @@ void	thread_init(t_data *data, t_philo *ph)
 	int	i;
 
 	i = 0;
-	data->time_to_start = get_time();
+	data->start = get_time();
 	printf("start time : %ldms\n", get_time());
 	while (i < data->nb_philo)
 	{
-		//ph[i].start_time = data->time_to_start;
+		ph[i].thread_start = get_time();
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
 			return ;
 		i++;

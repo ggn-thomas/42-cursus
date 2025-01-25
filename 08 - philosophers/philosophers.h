@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/24 17:41:11 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/25 14:48:25 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_think;
 	int				time_to_sleep;
-	long int				time_to_start;
+	long int				start;
 	int				nb_philo;
 	int				someone_died;
 	int				meal_required;
@@ -46,9 +46,9 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
 	int				id;
-	long int				last_meal;
 	int				nb_meal;
-	long int				start_time;
+	long int				last_meal;
+	long int				thread_start;
 	int				dead;
 	t_data			*dt;
 	pthread_t		tid;
