@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/25 14:44:48 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:22:56 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,9 @@ void	thread_init(t_data *data, t_philo *ph)
 
 	i = 0;
 	data->start = get_time();
-	printf("start time : %ldms\n", get_time());
 	while (i < data->nb_philo)
 	{
-		ph[i].thread_start = get_time();
+		ph[i].thread_start = data->start;
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
 			return ;
 		i++;

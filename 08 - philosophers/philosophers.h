@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/25 14:48:25 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:48:14 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void				end_thread(t_philo *philo, t_data *data);
 int					check_death(t_philo *philo);
 void				check(t_philo *philo, t_data *dt);
 void				print_action(t_philo *philo, char *action);
-int					someone_died(t_data *data);
+int					someone_died(t_philo *philo);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/25 14:50:09 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:47:11 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	print_action(t_philo *philo, char *action)
 {
-	long int	current_time;
 
 	pthread_mutex_lock(philo->dt->mutex_print);
-	if (!philo->dt->someone_died)
+	if (philo->dt->someone_died)
 	{
-		current_time = get_time() - philo->thread_start;
-		printf("%ldms %d %s\n", current_time, philo->id, action);
+		pthread_mutex_unlock(philo->dt->mutex_print);
+		return ;
 	}
+	printf("%ldms %d %s\n", get_time() - philo->thread_start, philo->id, action);
 	pthread_mutex_unlock(philo->dt->mutex_print);
 }
 
@@ -54,7 +54,7 @@ void	*routine(void *arg)
 	philo->last_meal = get_time();
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
-	while (!someone_died(philo->dt))
+	while (!philo->dt->someone_died)
 	{
 		is_eating(philo);
 		is_sleeping_thinking(philo);
