@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/27 10:22:56 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/28 11:08:11 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ t_philo	*philo_init(t_data *data)
 		ph[i].nb_meal = 0;
 		ph[i].dead = 0;
 		ph[i].thread_start = 0;
-		if (i == 0)
-			ph[i].fork_right = &data->fork[data->nb_philo - 1];
-		else
-			ph[i].fork_right = &data->fork[i - 1];
 	}
 	return (ph);
 }
@@ -51,12 +47,12 @@ t_data	*var_init(char **av)
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
+	data->start = 0;
+	data->someone_died = 0;
 	if (av[5])
 		data->meal_required = ft_atoi(av[5]);
 	else
 		data->meal_required = 0;
-	data->start = 0;
-	data->someone_died = 0;
 	data->mutex_death = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_death)
 		return (NULL);
@@ -84,13 +80,19 @@ void	thread_init(t_data *data, t_philo *ph)
 	int	i;
 
 	i = 0;
-	data->start = get_time();
 	while (i < data->nb_philo)
 	{
-		ph[i].thread_start = data->start;
+		ph[i].fork_right = ph[(i + 1) % data->nb_philo].fork_left;
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
 			return ;
 		i++;
+	}
+	i = -1;
+	data->start = get_time();
+	while (++i < data->nb_philo)
+	{
+		ph[i].thread_start = data->start;
+		ph[i].last_meal = data->start;
 	}
 }
 

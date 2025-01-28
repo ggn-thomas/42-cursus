@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/27 11:47:11 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/28 11:12:49 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	is_eating(t_philo *philo)
 
 void	is_sleeping_thinking(t_philo *philo)
 {
-	print_action(philo, SLEEP);
 	ft_usleep(philo->dt->time_to_sleep);
+	print_action(philo, SLEEP);
 	print_action(philo, THINK);
 }
 
@@ -51,7 +51,6 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	philo->last_meal = get_time();
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
 	while (!philo->dt->someone_died)
