@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 16:38:22 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:05:45 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	check(t_philo *philo, t_data *dt)
 			if (dt->meal_required > 0 && philo[i].nb_meal < dt->meal_required)
 				all_ate_enough = 0;
 		}
-		if (dt->meal_required > 0 && all_ate_enough)
+		if (dt->meal_required > 0 && all_ate_enough && dt->nb_philo != 1)
 		{
-			printf("All philos have eaten enough times\n");
+			printf("All philos have eaten enough times !\n");
 			dt->someone_died = 1;
 			break ;
 		}

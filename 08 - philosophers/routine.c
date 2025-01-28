@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/28 16:24:51 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:57:07 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->dt->nb_philo == 1)
+	{
+		printf("%dms %d %s\n", 0, philo->id, "has taken a fork");
+		return (NULL);
+	}
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
 	else
