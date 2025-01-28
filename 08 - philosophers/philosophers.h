@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/27 11:48:14 by thomas           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:59 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_think;
 	int				time_to_sleep;
-	long int				start;
+	long int		start;
 	int				nb_philo;
 	int				someone_died;
 	int				meal_required;
@@ -47,8 +47,8 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_right;
 	int				id;
 	int				nb_meal;
-	long int				last_meal;
-	long int				thread_start;
+	long int		last_meal;
+	long int		thread_start;
 	int				dead;
 	t_data			*dt;
 	pthread_t		tid;
@@ -56,12 +56,13 @@ typedef struct s_philo
 
 int					ft_atoi(char *nptr);
 long int			get_time(void);
-int				ft_usleep(long int time);
+int					ft_usleep(long int time);
 void				*routine(void *arg);
 void				end_thread(t_philo *philo, t_data *data);
 int					check_death(t_philo *philo);
 void				check(t_philo *philo, t_data *dt);
 void				print_action(t_philo *philo, char *action);
 int					someone_died(t_philo *philo);
+int					check_parsing(char **str);
 
 #endif

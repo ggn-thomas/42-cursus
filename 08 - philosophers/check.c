@@ -6,11 +6,35 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 11:44:21 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:38:22 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	check_parsing(char **str)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (!(str[i][j] >= '0' && str[i][j] <= '9'))
+			{
+				printf("Invalide syntax !\n");
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	someone_died(t_philo *philo)
 {
@@ -46,14 +70,27 @@ int	check_death(t_philo *philo)
 void	check(t_philo *philo, t_data *dt)
 {
 	int	i;
+	int	all_ate_enough;
 
 	while (!dt->someone_died)
 	{
 		i = -1;
+		all_ate_enough = 1;
 		while (++i < philo->dt->nb_philo)
 		{
-			if (check_death(&philo[i]) || check_meal(&philo[i]))
+			if (check_death(&philo[i]))
+			{
 				dt->someone_died = 1;
+				break ;
+			}
+			if (dt->meal_required > 0 && philo[i].nb_meal < dt->meal_required)
+				all_ate_enough = 0;
+		}
+		if (dt->meal_required > 0 && all_ate_enough)
+		{
+			printf("All philos have eaten enough times\n");
+			dt->someone_died = 1;
+			break ;
 		}
 		usleep(1000);
 	}

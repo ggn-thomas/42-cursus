@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 11:08:11 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:38 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ t_data	*var_init(char **av)
 	i = -1;
 	data = malloc(sizeof(t_data));
 	if (!data)
+	{
+		printf("Error initializing variables !\n");
 		return (NULL);
+	}
 	data->nb_philo = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
@@ -53,29 +56,36 @@ t_data	*var_init(char **av)
 		data->meal_required = ft_atoi(av[5]);
 	else
 		data->meal_required = 0;
+	return (data);
+}
+
+int	mutex_init(t_data *data)
+{
+	int	i;
+
 	data->mutex_death = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_death)
-		return (NULL);
+		return (0);
 	if (pthread_mutex_init(data->mutex_death, NULL) != 0)
-		return (NULL);
+		return (0);
 	data->mutex_print = malloc(sizeof(pthread_mutex_t));
 	if (!data->mutex_print)
-		return (NULL);
+		return (0);
 	if (pthread_mutex_init(data->mutex_print, NULL) != 0)
-		return (NULL);
+		return (0);
 	data->fork = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	if (!data->fork)
-		return (NULL);
+		return (0);
 	i = -1;
 	while (++i < data->nb_philo)
 	{
 		if (pthread_mutex_init(&data->fork[i], NULL) != 0)
-			return (NULL);
+			return (0);
 	}
-	return (data);
+	return (1);
 }
 
-void	thread_init(t_data *data, t_philo *ph)
+int	thread_init(t_data *data, t_philo *ph)
 {
 	int	i;
 
@@ -84,7 +94,10 @@ void	thread_init(t_data *data, t_philo *ph)
 	{
 		ph[i].fork_right = ph[(i + 1) % data->nb_philo].fork_left;
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
-			return ;
+		{
+			printf("Error initializing thread !\n");
+			return (0);
+		}
 		i++;
 	}
 	i = -1;
@@ -94,6 +107,7 @@ void	thread_init(t_data *data, t_philo *ph)
 		ph[i].thread_start = data->start;
 		ph[i].last_meal = data->start;
 	}
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -101,11 +115,12 @@ int	main(int ac, char **av)
 	t_data	*data;
 	t_philo	*philo;
 
-	//if (ac != 6)
-	//	return (1);
-	(void)ac;
+	if (ac < 5 || ac > 7 || !check_parsing(av))
+		return (1);
 	data = var_init(av);
 	if (!data)
+		return (1);
+	if (!mutex_init(data))
 	{
 		printf("Error initializing mutex !\n");
 		return (1);
@@ -116,7 +131,8 @@ int	main(int ac, char **av)
 		printf("Error initializing variable !\n");
 		return (1);
 	}
-	thread_init(data, philo);
+	if (!thread_init(data, philo))
+		return (1);
 	check(philo, data);
 	end_thread(philo, data);
 	return (0);

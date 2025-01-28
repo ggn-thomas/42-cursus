@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/28 11:12:49 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:51 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	print_action(t_philo *philo, char *action)
 {
-
-	pthread_mutex_lock(philo->dt->mutex_print);
-	if (philo->dt->someone_died)
+	pthread_mutex_lock(philo->dt->mutex_death);
+	if (!philo->dt->someone_died || action[0] == 'd')
 	{
-		pthread_mutex_unlock(philo->dt->mutex_print);
-		return ;
+		printf("%ldms %d %s\n", get_time() - philo->thread_start, philo->id,
+			action);
 	}
-	printf("%ldms %d %s\n", get_time() - philo->thread_start, philo->id, action);
-	pthread_mutex_unlock(philo->dt->mutex_print);
+	pthread_mutex_unlock(philo->dt->mutex_death);
 }
 
 void	is_eating(t_philo *philo)
@@ -35,8 +33,8 @@ void	is_eating(t_philo *philo)
 	philo->last_meal = get_time();
 	ft_usleep(philo->dt->time_to_eat);
 	philo->nb_meal++;
-	pthread_mutex_unlock(philo->fork_left);
 	pthread_mutex_unlock(philo->fork_right);
+	pthread_mutex_unlock(philo->fork_left);
 }
 
 void	is_sleeping_thinking(t_philo *philo)
@@ -53,6 +51,8 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
+	else
+		ft_usleep(10);
 	while (!philo->dt->someone_died)
 	{
 		is_eating(philo);
