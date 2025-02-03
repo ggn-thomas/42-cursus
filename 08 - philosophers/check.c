@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 17:05:45 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 09:41:28 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,23 @@ int	check_parsing(char **str)
 			}
 			j++;
 		}
+		if (ft_atoi(str[i]) >= 2147483647)
+		{
+			printf("The parameter is too large !\n");
+			return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-int	someone_died(t_philo *philo)
+static int	someone_died(t_philo *philo)
 {
 	print_action(philo, DEAD);
 	return (1);
 }
 
-int	check_meal(t_philo *philo)
-{
-	if (philo->nb_meal >= philo->dt->meal_required
-		&& philo->dt->meal_required > 0)
-		return (1);
-	return (0);
-}
-
-int	check_death(t_philo *philo)
+static int	check_death(t_philo *philo)
 {
 	long int	current_time;
 

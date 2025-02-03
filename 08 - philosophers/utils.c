@@ -6,11 +6,28 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:21:03 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 16:57:12 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:30:47 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	error(char *str, t_data *dt, t_philo *ph, int malloc)
+{
+	if (malloc)
+	{
+		if (ph)
+			free(ph);
+		if (dt->mutex_death)
+			free(dt->mutex_death);
+		if (dt->mutex_print)
+			free(dt->mutex_print);
+		if (dt)
+			free(dt);
+	}
+	printf("%s\n", str);
+	return (1);
+}
 
 long int	get_time(void)
 {
@@ -49,31 +66,19 @@ int	ft_usleep(long int ms)
 	return (1);
 }
 
-int	ft_atoi(char *nptr)
+long	ft_atoi(char *nptr)
 {
 	int		i;
-	int		nb;
-	int		r;
+	long	r;
 	char	*str;
 
 	str = (char *)nptr;
 	i = 0;
-	nb = 1;
 	r = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == ' '))
-		i++;
-	while ((str[i] == '+') || (str[i] == '-'))
-	{
-		if (str[i + 1] == '+' || str[i + 1] == '-')
-			return (0);
-		else if (nptr[i] == '-')
-			nb *= -1;
-		i++;
-	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		r = r * 10 + (str[i] - 48);
 		i++;
 	}
-	return (r * nb);
+	return (r);
 }

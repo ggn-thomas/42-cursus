@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 16:57:17 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:06:51 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SLEEP "is sleeping"
 # define THINK "is thinking"
 # define DEAD "died"
+# define ERROR "The arguments are not correct !"
 
 typedef struct s_data
 {
@@ -54,15 +55,17 @@ typedef struct s_philo
 	pthread_t		tid;
 }					t_philo;
 
-int					ft_atoi(char *nptr);
+long				ft_atoi(char *nptr);
 long int			get_time(void);
 int					ft_usleep(long int time);
 void				*routine(void *arg);
 void				end_thread(t_philo *philo, t_data *data);
-int					check_death(t_philo *philo);
 void				check(t_philo *philo, t_data *dt);
 void				print_action(t_philo *philo, char *action);
-int					someone_died(t_philo *philo);
 int					check_parsing(char **str);
-
+int					error(char *str, t_data *dt, t_philo *ph, int malloc);
+int					thread_init(t_data *data, t_philo *ph);
+int					mutex_init(t_data *data);
+t_data				*var_init(char **av);
+t_philo				*philo_init(t_data *data);
 #endif

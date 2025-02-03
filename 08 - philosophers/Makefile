@@ -2,6 +2,7 @@ SRCS =	philo_init.c\
 		routine.c\
 		utils.c\
 		check.c\
+		main.c\
 
 OBJS = $(SRCS:.c=.o)
 

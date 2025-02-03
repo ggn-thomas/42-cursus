@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/01/28 16:24:38 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:20:09 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@ t_philo	*philo_init(t_data *data)
 	return (ph);
 }
 
+static int	var_init2(t_data *data, char **av)
+{
+	if (av[5])
+	{
+		if (ft_atoi(av[5]) == 0)
+		{
+			free(data);
+			printf("The number of meals is not consistent !\n");
+			return (0);
+		}
+		data->meal_required = ft_atoi(av[5]);
+	}
+	else
+		data->meal_required = 0;
+	return (1);
+}
+
 t_data	*var_init(char **av)
 {
 	t_data	*data;
@@ -52,10 +69,8 @@ t_data	*var_init(char **av)
 	data->time_to_sleep = ft_atoi(av[4]);
 	data->start = 0;
 	data->someone_died = 0;
-	if (av[5])
-		data->meal_required = ft_atoi(av[5]);
-	else
-		data->meal_required = 0;
+	if (!var_init2(data, av))
+		return (NULL);
 	return (data);
 }
 
@@ -94,10 +109,7 @@ int	thread_init(t_data *data, t_philo *ph)
 	{
 		ph[i].fork_right = ph[(i + 1) % data->nb_philo].fork_left;
 		if (pthread_create(&ph[i].tid, NULL, routine, &ph[i]) != 0)
-		{
-			printf("Error initializing thread !\n");
-			return (0);
-		}
+			return (error("Error initializing thread !\n", data, ph, 1));
 		i++;
 	}
 	i = -1;
@@ -108,32 +120,4 @@ int	thread_init(t_data *data, t_philo *ph)
 		ph[i].last_meal = data->start;
 	}
 	return (1);
-}
-
-int	main(int ac, char **av)
-{
-	t_data	*data;
-	t_philo	*philo;
-
-	if (ac < 5 || ac > 7 || !check_parsing(av))
-		return (1);
-	data = var_init(av);
-	if (!data)
-		return (1);
-	if (!mutex_init(data))
-	{
-		printf("Error initializing mutex !\n");
-		return (1);
-	}
-	philo = philo_init(data);
-	if (!philo)
-	{
-		printf("Error initializing variable !\n");
-		return (1);
-	}
-	if (!thread_init(data, philo))
-		return (1);
-	check(philo, data);
-	end_thread(philo, data);
-	return (0);
 }

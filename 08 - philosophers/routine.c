@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/01/30 14:47:49 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:41:44 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	print_action(t_philo *philo, char *action)
 	pthread_mutex_lock(philo->dt->mutex_death);
 	if (!philo->dt->someone_died || action[0] == 'd')
 	{
-		printf("%ldms %d %s\n", get_time() - philo->thread_start, philo->id,
+		printf("%ld %d %s\n", get_time() - philo->thread_start, philo->id,
 			action);
 	}
 	pthread_mutex_unlock(philo->dt->mutex_death);
 }
 
-void	is_eating(t_philo *philo)
+static void	is_eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_left);
 	print_action(philo, FORK);
@@ -37,10 +37,10 @@ void	is_eating(t_philo *philo)
 	pthread_mutex_unlock(philo->fork_left);
 }
 
-void	is_sleeping_thinking(t_philo *philo)
+static void	is_sleeping_thinking(t_philo *philo)
 {
-	ft_usleep(philo->dt->time_to_sleep);
 	print_action(philo, SLEEP);
+	ft_usleep(philo->dt->time_to_sleep);
 	print_action(philo, THINK);
 }
 
@@ -51,7 +51,7 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->dt->nb_philo == 1)
 	{
-		printf("%dms %d %s\n", 0, philo->id, "has taken a fork");
+		printf("%d %d %s\n", 0, philo->id, "has taken a fork");
 		return (NULL);
 	}
 	if (philo->id % 2 != 0)
