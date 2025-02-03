@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/03 09:41:28 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:13:22 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	check(t_philo *philo, t_data *dt)
 		}
 		if (dt->meal_required > 0 && all_ate_enough && dt->nb_philo != 1)
 		{
-			printf("All philos have eaten enough times !\n");
 			dt->someone_died = 1;
 			break ;
 		}
