@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 14:13:47 by thomas            #+#    #+#             */
-/*   Updated: 2024/11/08 14:31:35 by thomas           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:11:58 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,9 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	{
-		free(buffer);
-		free(stock);
-		buffer = NULL;
-		stock = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	line = ft_join_all(fd, buffer, stock);
