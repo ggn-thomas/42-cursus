@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:21:03 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/03 11:30:47 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:23:24 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	error(char *str, t_data *dt, t_philo *ph, int malloc)
 			free(dt->mutex_death);
 		if (dt->mutex_print)
 			free(dt->mutex_print);
+		if (dt->fork)
+			free(dt->fork);
 		if (dt)
 			free(dt);
 	}
@@ -43,10 +45,10 @@ void	end_thread(t_philo *philo, t_data *data)
 
 	i = -1;
 	while (++i < data->nb_philo)
-		pthread_mutex_destroy(&data->fork[i]);
+		pthread_join(philo[i].tid, NULL);
 	i = -1;
 	while (++i < data->nb_philo)
-		pthread_join(philo[i].tid, NULL);
+		pthread_mutex_destroy(&data->fork[i]);
 	pthread_mutex_destroy(data->mutex_death);
 	pthread_mutex_destroy(data->mutex_print);
 	free(data->fork);
@@ -66,7 +68,7 @@ int	ft_usleep(long int ms)
 	return (1);
 }
 
-long	ft_atoi(char *nptr)
+long	ft_atol(char *nptr)
 {
 	int		i;
 	long	r;

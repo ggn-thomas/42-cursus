@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:05:16 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/03 15:06:00 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:58:25 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (error("The number of arguments is incorrect !", data, philo,
 				0));
+	if (ft_atol(av[1]) == 0)
+		return (error("There are no philosophers !", data, philo, 0));
 	if (!check_parsing(av))
 		return (1);
 	data = var_init(av);

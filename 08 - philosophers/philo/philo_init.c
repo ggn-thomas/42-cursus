@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/03 14:20:09 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:53:54 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ t_philo	*philo_init(t_data *data)
 	return (ph);
 }
 
-static int	var_init2(t_data *data, char **av)
+static int	finish_var_init(t_data *data, char **av)
 {
 	if (av[5])
 	{
-		if (ft_atoi(av[5]) == 0)
+		if (ft_atol(av[5]) == 0)
 		{
 			free(data);
 			printf("The number of meals is not consistent !\n");
 			return (0);
 		}
-		data->meal_required = ft_atoi(av[5]);
+		data->meal_required = ft_atol(av[5]);
 	}
 	else
 		data->meal_required = 0;
@@ -63,13 +63,13 @@ t_data	*var_init(char **av)
 		printf("Error initializing variables !\n");
 		return (NULL);
 	}
-	data->nb_philo = ft_atoi(av[1]);
-	data->time_to_die = ft_atoi(av[2]);
-	data->time_to_eat = ft_atoi(av[3]);
-	data->time_to_sleep = ft_atoi(av[4]);
+	data->nb_philo = ft_atol(av[1]);
+	data->time_to_die = ft_atol(av[2]);
+	data->time_to_eat = ft_atol(av[3]);
+	data->time_to_sleep = ft_atol(av[4]);
 	data->start = 0;
 	data->someone_died = 0;
-	if (!var_init2(data, av))
+	if (!finish_var_init(data, av))
 		return (NULL);
 	return (data);
 }

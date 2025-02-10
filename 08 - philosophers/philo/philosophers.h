@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/03 14:06:51 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:45:43 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_philo
 	pthread_t		tid;
 }					t_philo;
 
-long				ft_atoi(char *nptr);
+long				ft_atol(char *nptr);
 long int			get_time(void);
 int					ft_usleep(long int time);
 void				*routine(void *arg);

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/03 11:41:44 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:20:13 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static void	is_eating(t_philo *philo)
 	pthread_mutex_lock(philo->fork_right);
 	print_action(philo, FORK);
 	print_action(philo, EAT);
+	pthread_mutex_lock(philo->dt->mutex_death);
 	philo->last_meal = get_time();
+	pthread_mutex_unlock(philo->dt->mutex_death);
 	ft_usleep(philo->dt->time_to_eat);
 	philo->nb_meal++;
 	pthread_mutex_unlock(philo->fork_right);
@@ -55,7 +57,7 @@ void	*routine(void *arg)
 		return (NULL);
 	}
 	if (philo->id % 2 != 0)
-		ft_usleep(philo->dt->time_to_eat * 0.9 + 1);
+		ft_usleep(philo->dt->time_to_eat);
 	else
 		ft_usleep(10);
 	while (!philo->dt->someone_died)
