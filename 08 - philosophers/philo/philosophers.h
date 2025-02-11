@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:14:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:45:43 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:21:43 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data
 	int				nb_philo;
 	int				someone_died;
 	int				meal_required;
+	int				ready;
 	pthread_mutex_t	*mutex_death;
 	pthread_mutex_t	*mutex_print;
 	pthread_mutex_t	*fork;
@@ -57,7 +58,7 @@ typedef struct s_philo
 
 long				ft_atol(char *nptr);
 long int			get_time(void);
-int					ft_usleep(long int time);
+int					ft_usleep(long int time, t_data *data);
 void				*routine(void *arg);
 void				end_thread(t_philo *philo, t_data *data);
 void				check(t_philo *philo, t_data *dt);

@@ -6,62 +6,11 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 09:27:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:22:52 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:40:44 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-static int	ft_avlen(char *str)
-{
-	int	i;
-	int	count;
-
-	count =0;
-	i = 0;
-	while (str[i] == '0')
-		i++;
-	while (str[i])
-	{
-		i++;
-		count++;
-	}
-	return (count);
-}
-
-int	check_parsing(char **str)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (!(str[i][j] >= '0' && str[i][j] <= '9'))
-			{
-				printf("Invalide syntax !\n");
-				return (0);
-			}
-			j++;
-		}
-		if (ft_avlen(str[i]) > 12)
-		{
-			printf("The parameter is too large !\n");
-			return (0);
-		}
-		if (ft_atol(str[i]) >= 2147483647)
-		{
-			printf("The parameter is too large !\n");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
 
 static int	someone_died(t_philo *philo)
 {

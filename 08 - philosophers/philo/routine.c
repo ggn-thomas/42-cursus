@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:59:17 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/10 18:20:13 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:40:32 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static void	is_eating(t_philo *philo)
 	pthread_mutex_lock(philo->fork_right);
 	print_action(philo, FORK);
 	print_action(philo, EAT);
-	pthread_mutex_lock(philo->dt->mutex_death);
 	philo->last_meal = get_time();
-	pthread_mutex_unlock(philo->dt->mutex_death);
-	ft_usleep(philo->dt->time_to_eat);
+	ft_usleep(philo->dt->time_to_eat, philo->dt);
 	philo->nb_meal++;
 	pthread_mutex_unlock(philo->fork_right);
 	pthread_mutex_unlock(philo->fork_left);
@@ -42,7 +40,7 @@ static void	is_eating(t_philo *philo)
 static void	is_sleeping_thinking(t_philo *philo)
 {
 	print_action(philo, SLEEP);
-	ft_usleep(philo->dt->time_to_sleep);
+	ft_usleep(philo->dt->time_to_sleep, philo->dt);
 	print_action(philo, THINK);
 }
 
@@ -51,15 +49,15 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	while (!philo->dt->ready)
+		continue ;
 	if (philo->dt->nb_philo == 1)
 	{
 		printf("%d %d %s\n", 0, philo->id, "has taken a fork");
 		return (NULL);
 	}
 	if (philo->id % 2 != 0)
-		ft_usleep(philo->dt->time_to_eat);
-	else
-		ft_usleep(10);
+		ft_usleep(philo->dt->time_to_eat * 0.9, philo->dt);
 	while (!philo->dt->someone_died)
 	{
 		is_eating(philo);

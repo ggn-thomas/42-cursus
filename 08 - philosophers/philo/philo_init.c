@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 09:09:45 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/10 17:53:54 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:39:21 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_data	*var_init(char **av)
 	data->time_to_sleep = ft_atol(av[4]);
 	data->start = 0;
 	data->someone_died = 0;
+	data->ready = 0;
 	if (!finish_var_init(data, av))
 		return (NULL);
 	return (data);
@@ -119,5 +120,6 @@ int	thread_init(t_data *data, t_philo *ph)
 		ph[i].thread_start = data->start;
 		ph[i].last_meal = data->start;
 	}
+	data->ready = 1;
 	return (1);
 }

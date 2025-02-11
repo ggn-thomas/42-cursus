@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:21:03 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/10 18:23:24 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:38:01 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	error(char *str, t_data *dt, t_philo *ph, int malloc)
 			free(dt);
 	}
 	printf("%s\n", str);
-	return (1);
+	return (0);
 }
 
 long int	get_time(void)
@@ -58,13 +58,17 @@ void	end_thread(t_philo *philo, t_data *data)
 	free(philo);
 }
 
-int	ft_usleep(long int ms)
+int	ft_usleep(long int ms, t_data *data)
 {
 	long int	current_time;
 
 	current_time = get_time();
 	while ((get_time() - current_time) < ms)
+	{
+		if (data->someone_died)
+			return (0);
 		usleep(150);
+	}
 	return (1);
 }
 
