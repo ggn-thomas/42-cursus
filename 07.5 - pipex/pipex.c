@@ -3,31 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:38:59 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/11 12:08:51 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:42:44 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*find_path(char **envp)
+void	child_process(int *p_fd, char **av, char **envp)
 {
-	int		i;
-	char	**path;
-
-	i = 0;
-	while (!ft_strnstr(envp[i], "PATH", 4))
-		i++;
-	path = ft_split(envp[i] + 5, ":");
-}
-void	child_process(int *fd)
-{
+	int		fd;
+	
+	fd = open_file(av[0]);
 	close(fd[0]);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
-	execve();
+	execute();
 }
 
 int	main(int ac, char **av, char **envp)
@@ -42,7 +35,7 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	pid = fork();
 	if (pid == 0)
-		child_process(fd[2]);
+		child_process(fd);
 	else if (pid > 0)
 		parent_process(fd);
 	else
