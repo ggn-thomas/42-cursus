@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:31 by thomas           ###   ########.fr       */
+/*   Created: 2024/10/10 10:25:40 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/10/17 16:16:11 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
+#include "libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	j;
 
-char	*find_path(char **envp, char *command);
-int    open_file(char *file, int mode);
-void	ft_free_tab(char **tab);
-
-#endif
+	i = 0;
+	j = 0;
+	while (src[j] && size)
+	{
+		if (size && i < size - 1)
+		{
+			dst[i] = (char)src[i];
+			i++;
+		}
+		j++;
+	}
+	if (size)
+		dst[i] = '\0';
+	return (ft_strlen(src));
+}

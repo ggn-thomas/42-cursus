@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:31 by thomas           ###   ########.fr       */
+/*   Created: 2024/10/08 16:35:21 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/10/13 16:52:26 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
+#include "libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*d;
+	char	*s;
+	size_t	i ;
 
-char	*find_path(char **envp, char *command);
-int    open_file(char *file, int mode);
-void	ft_free_tab(char **tab);
-
-#endif
+	d = (char *)dest;
+	s = (char *)src;
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	if (d > s)
+	{
+		while (n--)
+			d[n] = s[n];
+	}
+	else
+	{
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (d);
+}

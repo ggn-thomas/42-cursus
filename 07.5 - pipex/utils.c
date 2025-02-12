@@ -6,46 +6,62 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:42:11 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/11 15:47:15 by thomas           ###   ########.fr       */
+/*   Updated: 2025/02/12 14:49:38 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-char    open_file(int fd)
+void	ft_free_tab(char **tab)
 {
-    int final_fd;
+	int	i;
 
-    final_fd = open(fd, O_RDONLY);
-    return(final_fd);
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
+
+int    open_file(char *file, int mode)
+{
+    int fd;
+
+	fd = 0;
+	if (mode == 0)
+    	fd = open(file, O_RDONLY);
+	else if (mode == 1)
+		fd = open(file, O_WRONLY);
+    return(fd);
+}
+
 char	*find_path(char **envp, char *command)
 {
 	int		i;
-	char	**tab_path;
+	char	**all_path;
 	char	*path;
 	char	*tmp;
 	
 	i = 0;
-	while (!ft_strnstr(envp[i], "PATH", 4))
+	while (envp[i] && !ft_strnstr(envp[i], "PATH", 4))
 		i++;
-	tab_path = ft_split(envp[i] + 5, ":");
+	all_path = ft_split(envp[i] + 5, ':');
 	tmp = ft_strjoin("/", command);
 	i = -1;
-	while (tab_path[++i])
+	while (all_path[++i])
 	{
-		path = ft_strjoin(tab_path[i], command);
+		path = ft_strjoin(all_path[i], tmp);
 		if (access(path, F_OK | X_OK) == 0)
 		{
 			free(tmp);
-			free(tab_path);
+			ft_free_tab(all_path);
 			return (path);
 		}
 		free(path);
 	}
 	free(tmp);
-	free(tab_path);
-	free(path);
+	ft_free_tab(all_path);
 	return (NULL);
 }

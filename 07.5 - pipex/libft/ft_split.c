@@ -6,11 +6,11 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:48:40 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/11 11:50:57 by thgaugai         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:20:25 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
 static int	ft_count_word(char *s, char c)
 {

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:31 by thomas           ###   ########.fr       */
+/*   Created: 2024/10/16 12:05:42 by thomas            #+#    #+#             */
+/*   Updated: 2024/11/09 11:59:26 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
+#include "libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
+	t_list	*tmp;
 
-char	*find_path(char **envp, char *command);
-int    open_file(char *file, int mode);
-void	ft_free_tab(char **tab);
-
-#endif
+	tmp = lst;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}

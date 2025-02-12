@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:31 by thomas           ###   ########.fr       */
+/*   Created: 2024/10/09 11:31:17 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/10/17 16:16:43 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
+#include "libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-char	*find_path(char **envp, char *command);
-int    open_file(char *file, int mode);
-void	ft_free_tab(char **tab);
-
-#endif
+	i = ft_strlen(s);
+	s += i;
+	while (i >= 0)
+	{
+		if ((unsigned char)*s == (unsigned char)c)
+			return ((char *)s);
+		s--;
+		i--;
+	}
+	if (*s == '\0' && c == '\0')
+		return ((char *)s);
+	return (NULL);
+}

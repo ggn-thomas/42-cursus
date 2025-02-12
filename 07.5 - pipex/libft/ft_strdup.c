@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:31 by thomas           ###   ########.fr       */
+/*   Created: 2024/10/10 12:33:41 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/10/17 16:15:15 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-#define PIPEX_H
+#include "libft.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+char	*ft_strdup(const char *s)
+{
+	int			i;
+	int			len;
+	char		*dest;
 
-char	*find_path(char **envp, char *command);
-int    open_file(char *file, int mode);
-void	ft_free_tab(char **tab);
-
-#endif
+	len = ft_strlen(s);
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	dest = malloc(sizeof (char) * (len + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		dest[i] = (char)s[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
