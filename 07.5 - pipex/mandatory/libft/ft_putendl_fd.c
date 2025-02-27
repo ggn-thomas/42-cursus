@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 10:37:30 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/18 11:04:18 by thgaugai         ###   ########.fr       */
+/*   Created: 2024/10/15 12:26:54 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/10/15 12:30:47 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*rl;
-	HIST_ENTRY	**history;
-
-	rl = readline("-> bash");
-	printf("%s\n", rl);
-	add_history(rl);
-	free(rl);
-
-	rl_on_new_line();
-
-	rl_clear_history();
-	return (0);
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
 }

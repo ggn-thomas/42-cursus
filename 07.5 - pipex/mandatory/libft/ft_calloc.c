@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 10:37:30 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/18 11:04:18 by thgaugai         ###   ########.fr       */
+/*   Created: 2024/10/10 12:55:13 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/01/09 08:58:21 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*rl;
-	HIST_ENTRY	**history;
+	void	*dest;
 
-	rl = readline("-> bash");
-	printf("%s\n", rl);
-	add_history(rl);
-	free(rl);
-
-	rl_on_new_line();
-
-	rl_clear_history();
-	return (0);
+	dest = malloc(size * nmemb);
+	if (!dest)
+		return (NULL);
+	ft_bzero(dest, nmemb * size);
+	return (dest);
 }

@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 10:37:30 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/18 11:04:18 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/02/07 10:41:49 by thomas            #+#    #+#             */
+/*   Updated: 2025/02/27 15:32:52 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PIPEX_H
+#define PIPEX_H
+
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft/libft.h"
 
-int	main(void)
-{
-	char	*rl;
-	HIST_ENTRY	**history;
+int	**init_fd(int count_pipe);
+int	*init_tab_pid(int count_command);
+void	ft_execute(char **envp, char *command);
+int	open_file(char *file, int mode);
+char	*find_path(char **envp, char *command);
 
-	rl = readline("-> bash");
-	printf("%s\n", rl);
-	add_history(rl);
-	free(rl);
-
-	rl_on_new_line();
-
-	rl_clear_history();
-	return (0);
-}
+#endif

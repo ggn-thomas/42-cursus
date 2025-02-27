@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 10:37:30 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/18 11:04:18 by thgaugai         ###   ########.fr       */
+/*   Created: 2024/10/09 10:18:45 by thgaugai          #+#    #+#             */
+/*   Updated: 2024/12/03 10:20:53 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*rl;
-	HIST_ENTRY	**history;
-
-	rl = readline("-> bash");
-	printf("%s\n", rl);
-	add_history(rl);
-	free(rl);
-
-	rl_on_new_line();
-
-	rl_clear_history();
-	return (0);
+	while (*s)
+	{
+		if ((unsigned char)*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }

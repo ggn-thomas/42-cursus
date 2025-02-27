@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char				*ft_strncpy(char *dest, char *src, unsigned int n);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
