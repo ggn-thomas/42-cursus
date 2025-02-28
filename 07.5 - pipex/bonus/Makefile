@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c pipex_init.c pipex_utils.c
+SRCS = pipex.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 

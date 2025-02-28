@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 15:22:46 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/02/27 15:29:54 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/02/11 15:42:11 by thomas            #+#    #+#             */
+/*   Updated: 2025/02/28 12:38:14 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_execute(char **envp, char *command)
+int	error(char *str)
 {
-	char	*path;
-	char	**args;
+	ft_putstr_fd(str, 1);
+	exit(EXIT_FAILURE);
+}
 
-	args = ft_split(command, ' ');
-	if (!args)
-		return ;
-	path = find_path(envp, args[0]);
-	if (!path)
+void	ft_free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
 	{
-		ft_free_tab(args);
-		printf("Command not found !\n");
-		return ;
+		free(tab[i]);
+		i++;
 	}
-	if (execve(path, args, NULL) == -1)
-	{
-		ft_free_tab(args);
-		printf("Error executing command !\n !");
-		exit(0);
-	}
-	free(path);
-	ft_free_tab(args);
+	free(tab);
 }
 
 int	open_file(char *file, int mode)
@@ -43,9 +37,20 @@ int	open_file(char *file, int mode)
 
 	fd = 0;
 	if (mode == 0)
+	{
+		if (access(file, F_OK | X_OK) != 0)
+			return (error(PERM));
 		fd = open(file, O_RDONLY);
+	}
 	else if (mode == 1)
-		fd = open(file, O_WRONLY);
+	{
+		if (access(file, F_OK) != 0)
+			fd = open(file, O_CREAT | O_WRONLY, 0644);
+		else if (access(file, X_OK) != 0)
+			return (error(PERM));
+		else
+			fd = open(file, O_WRONLY);
+	}
 	return (fd);
 }
 
