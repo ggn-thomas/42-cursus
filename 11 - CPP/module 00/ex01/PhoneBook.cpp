@@ -6,133 +6,111 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:26:02 by thomas            #+#    #+#             */
-/*   Updated: 2025/04/29 16:37:26 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:04:59 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PhoneBook.hpp"
 #include <iostream>
+#include <string>
 
-int	ft_strlen(std::string str)
+PhoneBook::PhoneBook () { count = 0, oldest = 0 ;}
+
+void	PhoneBook::add_contact()
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (count < 8)
+	{
+		contact[count].set_contact();
+		count++;
+	}
+	else
+	{
+		contact[oldest].set_contact();
+		oldest = (oldest + 1) % 8;
+	}
 }
 
-class Contact
+void	PhoneBook::print_empty(int nb)
 {
-  private:
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
-
-  public:
-	void set_contact()
-	{
-		std::cout << "Enter first name : ";
-		std::cin >> first_name;
-		std::cout << "Enter last name : ";
-		std::cin >> last_name;
-		std::cout << "Enter nickname : ";
-		std::cin >> nickname;
-		std::cout << "Enter phone number : ";
-		std::cin >> phone_number;
-		std::cout << "Enter darkest secret : ";
-		std::cin >> darkest_secret;
-	}
-    std::string get_FirstName() { return first_name; }
-    
-};
-
-class PhoneBook
-{
-  private:
-	int count = 0;
-	int oldest = 0;
-	Contact contact[8];
-
-  public:
-	void add_contact()
-	{
-		if (count < 8)
-		{
-			contact[count].set_contact();
-			count++;
-		}
-	}
-	void print_empty(int nb)
-	{
-		while (nb--)
-			std::cout << ' ';
-	}
-
-	void print_string(std::string str)
-	{
-		int len = 0;
-		int i = 0;
-		len = ft_strlen(str);
-
-		if (len < 10)
-		{
-			print_empty(10 - len);
-			std::cout << str;
-		}
-		else
-		{
-			while (i <= 9)
-			{
-				std::cout << str[i];
-				i++;
-			}
-			std::cout << '.';
-		}
-	}
-
-	void display_allcontact()
-	{
-		int len = 0;
-		int nb_empty = 0;
-		int i = 0;
-
-		while (contact[i])
-		{
-			std::cout << "         " << i << '|';
-			print_string(contact[i].first_name);
-			std::cout << '|';
-			print_string(contact[i].last_name);
-			std::cout << '|';
-			print_string(contact[i].nickname);
-		}
-	}
-};
-
-
-
-int	ft_strcmp(std::string s1, std::string s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i])
-		i++;
-	return (s1[i] - s2[i]);
+	while (nb--)
+		std::cout << ' ';
 }
 
-int	main(int ac, char **av)
+void PhoneBook::print_string(std::string str)
 {
-	PhoneBook phonebook;
+	int len = 0;
+	int i = 0;
+	len = str.length();
 
-	if (ft_strcmp(av[1], "ADD") == 0)
-		phonebook.add_contact();
-	else if (ft_strcmp(av[1], "SEARCH") == 0)
+	if (len < 10)
 	{
-		phonebook.display_allcontact();
+		print_empty(10 - len);
+		std::cout << str;
 	}
-	else if (ft_strcmp(av[1], "EXIT") == 0)
-		return (0);
+	else
+	{
+		while (i < 9)
+		{
+			std::cout << str[i];
+			i++;
+		}
+		std::cout << '.';
+	}
+}
+
+int	PhoneBook::handle_index(std::string index)
+{
+	if (index.isAlpha())
+		return (-1);
+	if (index.length() > 1)
+		return (-1);
+	return (index + '0');
+}
+
+void PhoneBook::display_result(std::string index)
+{
+	int	num = 1000000;
+
+	while ((!(num < count)) || handle_index(index) == -1)
+	{
+		std::cout << "\033[31mInvalid index ! Retry with another value : \033[0m";
+		std::cin>>index;
+		if (std::cin.eof())
+			exit(0);
+	}
+	std::cout << "Here is the contact number : " << index << std::endl;
+	std::cout << contact[index].getFirstname() << std::endl;
+	std::cout << contact[index].getLastname() << std::endl;
+	std::cout << contact[index].getNickname() << std::endl;
+	std::cout << contact[index].getPhonenumber() << std::endl;
+	std::cout << contact[index].getDarkestsecret() << std::endl;
+}
+
+void	PhoneBook::display_allcontact()
+{
+	int i = 0;
+	std::string index;
+
+	if (count == 0)
+	{
+		std::cout << "\033[31mYou haven't got contact in your phonebook !\033[0m\n" << std::endl;
+			return ;
+	}
+	while (i < count)
+	{
+		std::cout << "|     Index| Firstname|  Lastname|  Nickname|" << std::endl;
+		std::cout << "|----------|----------|----------|----------|" << std::endl;
+		std::cout << "|         " << i << '|';
+		print_string(contact[i].getFirstname());
+		std::cout << '|';
+		print_string(contact[i].getLastname());
+		std::cout << '|';
+		print_string(contact[i].getNickname());
+		std::cout << '|';
+		std::cout << '\n';
+		i++;
+	}
+	std::cout << "Enter the index of the contact you want : ";
+	std::cin >> index;
+	display_result(index);
 }
