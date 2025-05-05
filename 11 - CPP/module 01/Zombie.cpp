@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 10:54:12 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/05 15:28:01 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/05/05 15:46:11 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/05/05 16:51:24 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-using namespace std;
+#include "Zombie.hpp"
 
-int main(int ac, char **av)
+void	Zombie::ZombieSpeak()
 {
-    if (ac == 1)
-    {
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-        return (0);
-    }
-    else
-    {
-        for (int i = 1; i < ac; i++)
-            for (int j = 0; av[i][j]; j++)
-                std::cout << (char)std::toupper(av[i][j]);
-        std::cout<<endl;
-    }
-    return (1);
+	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-    

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:07:46 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/05 15:10:37 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:46:48 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define PHONEBOOK_HPP
 
 #include <iostream>
-#include "contact.hpp"
+#include "Contact.hpp"
 
 class PhoneBook
 {

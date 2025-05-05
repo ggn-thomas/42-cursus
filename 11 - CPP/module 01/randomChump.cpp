@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 10:54:12 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/05 15:28:01 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/05/05 15:56:42 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/05/05 16:56:28 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-using namespace std;
+#include "Zombie.hpp"
 
-int main(int ac, char **av)
+void	randomChump(std::string name)
 {
-    if (ac == 1)
-    {
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-        return (0);
-    }
-    else
-    {
-        for (int i = 1; i < ac; i++)
-            for (int j = 0; av[i][j]; j++)
-                std::cout << (char)std::toupper(av[i][j]);
-        std::cout<<endl;
-    }
-    return (1);
+	Zombie	zombie;
+
+	zombie.name = name;
+	std::cout << "The zombie " << zombie.name << " has just been created" << std::endl;
+	name.clear();
+	std::cout << "The zombie has just been destroyed" << std::endl;
 }
-    
