@@ -6,13 +6,22 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:30:27 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/01 17:25:15 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:10:10 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-void	Contact::set_contact()
+void	Contact::reset()
+{
+	firstName.clear();
+	lastName.clear();
+	nickname.clear();
+	phoneNumber.clear();
+	darkestSecret.clear();
+}
+
+void	Contact::setContact()
 {
 	while(firstName.empty())
 	{

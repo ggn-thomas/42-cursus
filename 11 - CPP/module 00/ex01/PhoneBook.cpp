@@ -3,40 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:26:02 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/04 14:33:11 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/05 15:13:07 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <string>
+#include <stdio.h>
 
 PhoneBook::PhoneBook () { count = 0, oldest = 0 ;}
 
-void	PhoneBook::add_contact()
+
+void	PhoneBook::addContact()
 {
 	if (count < 8)
 	{
-		contact[count].set_contact();
+		contact[count].setContact();
 		count++;
 	}
 	else
 	{
-		contact[oldest].set_contact();
+		contact[oldest].reset();
+		contact[oldest].setContact();
 		oldest = (oldest + 1) % 8;
 	}
 }
 
-void	PhoneBook::print_empty(int nb)
+void	PhoneBook::printEmpty(int nb)
 {
 	while (nb--)
 		std::cout << ' ';
 }
 
-void PhoneBook::print_string(std::string str)
+void PhoneBook::printString(std::string str)
 {
 	int len = 0;
 	int i = 0;
@@ -44,7 +47,7 @@ void PhoneBook::print_string(std::string str)
 
 	if (len < 10)
 	{
-		print_empty(10 - len);
+		printEmpty(10 - len);
 		std::cout << str;
 	}
 	else
@@ -58,7 +61,7 @@ void PhoneBook::print_string(std::string str)
 	}
 }
 
-int	PhoneBook::handle_index(std::string index)
+int	PhoneBook::handleIndex(std::string index)
 {
 	if (index.empty())
 		return (-1);
@@ -70,24 +73,14 @@ int	PhoneBook::handle_index(std::string index)
 }
 
 
-void PhoneBook::display_result(std::string index)
+void PhoneBook::displayResult(std::string index)
 {
 	int	index_int = 0;
-		
+
 	while (1)
 	{
-		index_int = handle_index(index);
-		if (index_int == -1)
-		{
-			std::cout << "\033[31mPlease enter valid index!\033[0m" << std::endl;
-			index.clear();
-			std::cout << "Enter the index of the contact you want : ";
-			std::getline(std::cin, index);
-			if (std::cin.eof())
-				exit(0);
-			continue;
-		}
-		if (index_int >= count || index_int < 0)
+		index_int = handleIndex(index);
+		if (index_int == -1 || index_int >= count || index_int < 0)
 		{
 			std::cout << "\033[31mPlease enter valid index!\033[0m" << std::endl;
 			index.clear();
@@ -108,14 +101,14 @@ void PhoneBook::display_result(std::string index)
 	std::cout << contact[index_int].getDarkestsecret() << std::endl;
 }
 
-void	PhoneBook::display_allcontact()
+void	PhoneBook::displayAllContact()
 {
 	int i = 0;
 	std::string index;
 
 	if (count == 0)
 	{
-		std::cout << "\033[31mYou haven't got contact in your phonebook !\033[0m\n" << std::endl;
+		std::cout << "\033[31mYou haven't got contact in your phonebook !\033[0m" << std::endl;
 			return ;
 	}
 	std::cout << "|     Index| Firstname|  Lastname|  Nickname|" << std::endl;
@@ -123,16 +116,16 @@ void	PhoneBook::display_allcontact()
 	while (i < count)
 	{
 		std::cout << "|         " << i << '|';
-		print_string(contact[i].getFirstname());
+		printString(contact[i].getFirstname());
 		std::cout << '|';
-		print_string(contact[i].getLastname());
+		printString(contact[i].getLastname());
 		std::cout << '|';
-		print_string(contact[i].getNickname());
+		printString(contact[i].getNickname());
 		std::cout << '|';
 		std::cout << '\n';
 		i++;
 	}
 	std::cout << "Enter the index of the contact you want : ";
 	std::getline(std::cin, index);
-	display_result(index);
+	displayResult(index);
 }

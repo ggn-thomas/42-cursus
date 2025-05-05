@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:07:46 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/01 18:03:25 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:10:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ class PhoneBook
 
 	public:
 		PhoneBook();
-		void add_contact();
-		void print_empty(int nb);
-		void print_string(std::string str);
-		void display_result(std::string index);
-		void display_allcontact();
-		int handle_index(std::string index);
+		void addContact();
+		void printEmpty(int nb);
+		void printString(std::string str);
+		void displayResult(std::string index);
+		void displayAllContact();
+		int handleIndex(std::string index);
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:13:17 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/01 17:24:47 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:00:51 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	main()
 			return (1);
 		if (command == "ADD")
 		{
-			phonebook.add_contact();
+			phonebook.addContact();
 			std::cout << "\033[32mContact successfully added !\033[0m\n" << std::endl;
 		}
 		else if (command == "SEARCH")
-			phonebook.display_allcontact();
+			phonebook.displayAllContact();
 		else if (command == "EXIT")
 			break ;
 		else
