@@ -6,15 +6,18 @@
 #    By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 17:38:52 by thomas            #+#    #+#              #
-#    Updated: 2025/05/05 17:41:41 by thgaugai         ###   ########.fr        #
+#    Updated: 2025/05/06 14:22:44 by thgaugai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = megaphone.cpp
+SRCS =  main.cpp\
+		newZombie.cpp\
+		randomChump.cpp\
+		Zombie.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = megaphone
+NAME = Zombie
 
 CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98

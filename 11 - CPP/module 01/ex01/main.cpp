@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 15:46:14 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/05 16:53:12 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/05/06 15:44:21 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/05/06 16:46:45 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-
-class Zombie
+int	main()
 {
-	private:
-		std::string name;
-		
-	public:
-		Zombie();
-		void	ZombieSpeak();
-};
-
-#endif
+	Zombie	*horde = zombieHorde(5, "Zombie");
+	delete [] horde;
+	return 0;
+}
