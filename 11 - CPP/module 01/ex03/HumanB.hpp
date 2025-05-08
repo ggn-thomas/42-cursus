@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 10:11:38 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/08 11:09:18 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/08 14:09:50 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 class HumanB {
     private:
         std::string name;
-        Weapon  weapon;
+        Weapon*  weapon;
     public:
-        HumanB();
+        HumanB(std::string name);
+        void    setWeapon(Weapon& weapon);
         void    attack();
 };
 
