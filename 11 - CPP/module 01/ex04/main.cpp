@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:40:40 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/08 17:29:14 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:44:04 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ std::string	replace(std::string buffer, std::string s1, std::string s2)
 		start = pos + s1.length();
 	}
 	result+=buffer.substr(start);
-	std::cout<<result<<std::endl;
 	return result;
 }
 
