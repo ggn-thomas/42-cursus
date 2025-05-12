@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:40:40 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/10 10:44:04 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/10 16:47:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ std::string	getBuffer(std::string file)
 	std::ifstream fichier(file.c_str());
 	if (!fichier.is_open())
 	{
-		std::cerr << "Error!" << std::endl;
+		std::cout << "Error!" << std::endl;
 		return "";
 	}
 	while (getline(fichier, line)){
@@ -38,9 +38,14 @@ std::string	replace(std::string buffer, std::string s1, std::string s2)
 	size_t	start = 0;
 	std::string	result;
 
-	if (buffer.find(s1) == std::string::npos)
+	if (s1.length() == 0)
 	{
-		std::cerr<< "Error ! The pattern is not present in the string."<<std::endl;
+		std::cout << "S1 is empty !" << std::endl;
+		return "";
+	}
+	else if (buffer.find(s1) == std::string::npos)
+	{
+		std::cout << "Error ! The pattern is not present in the string."<<std::endl;
 		return "";
 	}
 	while ((pos = buffer.find(s1, start)) != std::string::npos)

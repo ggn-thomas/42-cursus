@@ -5,19 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/08 10:30:02 by thomas            #+#    #+#              #
-#    Updated: 2025/05/10 14:02:07 by thgaugai         ###   ########.fr        #
+#    Created: 2025/05/10 10:12:51 by thomas            #+#    #+#              #
+#    Updated: 2025/05/10 14:51:37 by thgaugai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =  main.cpp \
-		HumanA.cpp\
-		HumanB.cpp\
-		Weapon.cpp\
+		Fixed.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = Ex03
+NAME = Fixed
 
 CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:39:42 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/06 17:03:08 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/10 13:54:49 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 Zombie	*zombieHorde( int N, std::string name ){
 
+	if (N <= 0)
+		return NULL;
 	Zombie	*horde = new Zombie[N];
 	for (int i=0; i < N; i++)
 	{
