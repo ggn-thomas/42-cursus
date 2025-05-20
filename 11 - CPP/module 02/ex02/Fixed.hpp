@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:30:33 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/14 12:37:49 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/20 10:50:10 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 class   Fixed{
     private:

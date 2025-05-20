@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:30:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/14 13:09:05 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/20 10:57:23 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	Fixed::operator>(const Fixed &f) const {
 }
 
 bool	Fixed::operator<(const Fixed &f) const {
-	return (this->toFloat() > f.toFloat());
+	return (this->toFloat() < f.toFloat());
 }
 
 bool	Fixed::operator>=(const Fixed &f) const {
@@ -110,7 +110,7 @@ Fixed	Fixed::operator++(int) {
 
 Fixed	&Fixed::operator--() {
 	this->setRawBits(this->getRawBits() - 1);
-	return *this;	
+	return *this;
 }
 
 Fixed	Fixed::operator--(int) {
@@ -148,6 +148,7 @@ Fixed	Fixed::max(const Fixed& value1, const Fixed& value2) {
 }
 
 std::ostream& operator<<(std::ostream& o, const Fixed& fixed){
-	o << fixed.toFloat();
-	return (o);
+    o << std::fixed << std::setprecision(10) << fixed.toFloat()
+      << " (raw: " << fixed.getRawBits() << ")";
+    return o;
 }
