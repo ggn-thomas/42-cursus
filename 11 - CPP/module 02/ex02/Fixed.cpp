@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:30:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/20 10:57:23 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/21 11:16:19 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,6 @@ Fixed	Fixed::max(const Fixed& value1, const Fixed& value2) {
 }
 
 std::ostream& operator<<(std::ostream& o, const Fixed& fixed){
-    o << std::fixed << std::setprecision(10) << fixed.toFloat()
-      << " (raw: " << fixed.getRawBits() << ")";
+  	o << fixed.toFloat()<< std::endl;
     return o;
 }
