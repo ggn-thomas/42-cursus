@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:04:02 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/23 11:30:05 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:14:57 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(void) : ClapTrap("Default", 100, 50, 20){
+    std::cout << "ScavTrap default constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20){
+    std::cout << "ScavTrap default constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage) : ClapTrap(name, hitPoints, energyPoints, attackDamage) {
     std::cout << "ScavTrap default constructor called" << std::endl;
 }
 

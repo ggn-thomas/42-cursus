@@ -6,13 +6,21 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:04:02 by thomas            #+#    #+#             */
-/*   Updated: 2025/05/16 15:33:23 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/26 17:15:21 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(void) : ClapTrap("Thomas", 100, 50, 20){
+    std::cout << "ScavTrap default constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20){
+    std::cout << "ScavTrap default constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage) : ClapTrap(name, hitPoints, energyPoints, attackDamage) {
     std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
@@ -52,5 +60,5 @@ void    ScavTrap::attack(const std::string& target){
 }
 
 void    ScavTrap::guardGate(){
-    std::cout << "ScavTrap" << name << " is now in Gate keeper mode!" << std::endl;
+    std::cout << "ScavTrap " << name << " is now in Gate keeper mode!" << std::endl;
 }
