@@ -6,11 +6,11 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:26:13 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 11:42:35 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/28 16:41:36 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.cpp"
+#include "Animal.hpp"
 
 Animal::Animal(){
 	std::cout << "Animal default constructor called" << std::endl;
@@ -24,11 +24,11 @@ Animal::Animal(std::string type){
 
 Animal::Animal(Animal &cpy){
 	std::cout << "Copy assignment operator called" << std::endl;
-	*this = cpy;
+	this->type = cpy.type;
 }
 
 Animal& Animal::operator=(const Animal &a){
-	this->name = a.name;
+	this->type = a.type;
 	return (*this);
 }
 
@@ -36,11 +36,10 @@ Animal::~Animal(){
 	std::cout << "Destructor called" << std::endl;
 }
 
-Animal::makeSound(){
-	if (this->name == "Cat")
-		std::cout << "Miaouuuu" << std::endl;
-	else if (this->name == "Dog")
-		std::cout << "Waoufff" << std::endl;
-	else
-		return;
+void	Animal::makeSound() const{
+	std::cout << "Make animal sound" << std::endl;
+}
+
+std::string	Animal::getType() const{
+	return this->type;
 }

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 11:43:05 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 16:44:05 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/05/28 14:05:24 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/05/28 16:44:19 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Cat.hpp"
 
-Dog::Dog() : Animal("Dog"){
-	std::cout << "Dog default contructor called" << std::endl;
+Cat::Cat(){
+	std::cout << "Cat default constructor called" << std::endl;
 }
 
-Dog::Dog(Dog &cpy) : Animal() {
+Cat::~Cat(){
+	std::cout << "Cat destructor called" << std::endl;
+}
+
+Cat::Cat(Cat &cpy) : Animal() {
 	std::cout << "Copy assignement operator called" << std::endl;
 	if (this != &cpy)
 		this->type = cpy.type;
 }
 
-Dog&	Dog::operator=(const Dog &Dog){
-	this->type = Dog.type;
+Cat&	Cat::operator=(const Cat &Cat){
+	this->type = Cat.type;
 	return (*this);
 }
 
-Dog::~Dog(){
-	std::cout << "Dog destructor called" << std::endl;
-}
-
-void	Dog::makeSound() const {
-	std::cout << "Ouafff" << std::endl;
+void	Cat::makeSound() const {
+	std::cout << "Miaouuuu" << std::endl;
 }
