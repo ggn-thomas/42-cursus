@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:05:24 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 16:44:19 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/29 10:57:55 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../includes/Cat.hpp"
 
-Cat::Cat(){
+Cat::Cat() : Animal("Cat"){
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
@@ -32,5 +32,5 @@ Cat&	Cat::operator=(const Cat &Cat){
 }
 
 void	Cat::makeSound() const {
-	std::cout << "Miaouuuu" << std::endl;
+	std::cout << this->getType() << " says : Miaouuuu" << std::endl;
 }
