@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:26:21 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 16:34:32 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:51:09 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Animal {
 
 		virtual void	makeSound() const;
 		std::string	getType() const;
+		virtual void	setIdeas(std::string idea, int i) const;
+		virtual std::string	getIdeas(int i) const;
 
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:02:18 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 16:32:16 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:50:30 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
-class Cat : public Animal {
+class Cat : public Animal, public Brain {
+	private:
+		Brain	*Brain;
 	public:
 		Cat();
 		~Cat();

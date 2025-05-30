@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:43:12 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/28 16:49:38 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/05/29 14:33:30 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #define DOG_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
-class Dog : public Animal {
+class Dog : public Animal, public Brain {
+	private:
+		Brain	*Brain;
 	public:
 		Dog();
 		~Dog();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:05:24 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/29 10:57:55 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/29 14:49:54 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,5 @@ Cat&	Cat::operator=(const Cat &Cat){
 void	Cat::makeSound() const {
 	std::cout << this->getType() << " says : Miaouuuu" << std::endl;
 }
+
+

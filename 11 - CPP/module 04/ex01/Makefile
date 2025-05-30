@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thomas <thomas@student.42.fr>              +#+  +:+       +#+         #
+#    By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/28 14:52:39 by thgaugai          #+#    #+#              #
-#    Updated: 2025/05/29 10:02:08 by thomas           ###   ########.fr        #
+#    Updated: 2025/05/29 14:39:05 by thgaugai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS =  src/main.cpp \
 		src/Animal.cpp\
 		src/WrongAnimal.cpp\
 		src/WrongCat.cpp\
+		src/Brain.cpp\
 
 OBJS = $(SRCS:.cpp=.o)
 

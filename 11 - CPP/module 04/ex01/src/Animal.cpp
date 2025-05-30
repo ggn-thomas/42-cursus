@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 11:26:13 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/29 11:20:48 by thomas           ###   ########.fr       */
+/*   Updated: 2025/05/29 14:51:20 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ void	Animal::makeSound() const{
 
 std::string	Animal::getType() const{
 	return this->type;
+}
+
+void	Animal::setIdeas(std::string idea, int i) const{
+	this->ideas[i] = idea;
+}
+
+std::string	Animal::getIdeas(int i) const{
+	return this->ideas[i];
 }
