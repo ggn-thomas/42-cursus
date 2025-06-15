@@ -6,11 +6,19 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:45:18 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/12 14:39:20 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/15 12:11:33 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
+
+void	ft_forward(t_player *player)
+{
+	if (data->map[(int)player->y]->line[(int)(player->x + player->dir_x * player->move_speed)] == 0)
+		player->x += player->dir_x * player->move_speed;
+	if (data->map[(int)(player->y + player->dir_y * player->move_speed)]->line[(int)player->x] == 0)
+		player->y += player->dir_y * player->move_speed;
+}
 
 /*
 void	ft_keypress(int keycode, t_data *data)

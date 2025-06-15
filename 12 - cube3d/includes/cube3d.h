@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:47:20 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/13 15:48:22 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/15 11:58:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,13 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double			x; // postion du joueur
+	double 			x; // postion du joueur
 	double			y;
-	double			dir_x; // vecteur direction
+	double 			dir_x; // vecteur direction
 	double			dir_y;
-	double			plane_x; // plan de projection
+	double 			plane_x; // plan de projection
 	double			plane_y;
+	int				move_speed;
 }					t_player;
 
 typedef struct s_ray
@@ -58,6 +59,7 @@ typedef struct s_ray
 	int				hit;
 	int				side;
 	double			perp_wall_dist;
+	int				screen_heigth;
 }					t_ray;
 
 typedef struct s_data
@@ -65,6 +67,8 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	t_map			**map;
+	int				draw_start;
+	int				draw_end;
 	void			*NO;
 	void			*SO;
 	void			*WE;
@@ -79,6 +83,7 @@ void				error(char *mess);
 // void	ft_keypress(int keycode, t_data *data);
 t_map				*ft_new_node(char *line);
 void				ft_lstadd_back(t_map **lst, t_map *new);
+void				ray(t_ray *ray, t_player *player, t_data *data);
 int					window_init(t_param_map *map);
 
 #endif
