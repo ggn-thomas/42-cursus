@@ -44,7 +44,7 @@ int	window_init(t_map **map)
 	data.win = mlx_new_window(data.mlx, data.size_x, data.size_y, "Cube3d");
 	if (!data.win)
 		error("Error: Minilibx: Window creation failed!");
-	//mlx_hook(data.win, 2, 1L << 0, ft_keypress, &data);
+	mlx_hook(data.win, 2, 1L << 0, ft_keypress, &data);
 	load_sprites(&data);
 	mlx_loop(data.mlx);
 	draw_background(&data);
@@ -54,15 +54,14 @@ int	init(t_map **map)
 {
 	t_data data;
 	t_ray	ray;
-	t_player	player;
 
-	player.x = 0;
-	player.y = 0;
-	player.dir_x = -1;
-	player.dir_y = 0;
-	player.plane_x = 0;
-	player.plane_y = 0.66;
+	data.player->x = 0;
+	data.player->y = 0;
+	data.player->dir_x = -1;
+	data.player->dir_y = 0;
+	data.player->plane_x = 0;
+	data.player->plane_y = 0.66;
 	window_init(map);
-	init_ray(&ray, &player, &data);
-	game_loop(&player, &ray);
+	init_ray(&ray, &data);
+	game_loop(&data.player, &ray);
 }

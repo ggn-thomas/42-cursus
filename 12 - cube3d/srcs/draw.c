@@ -12,51 +12,46 @@
 
 #include "../includes/cube3d.h"
 
-/*
-void	draw_background(t_data *data)
+int	get_texture_pixel(void *texture, int x, int y)
 {
-	int x;
-	int y;
-	void *sprites;
+	char	*data;
+	int	bpp;
+	int	size_line;
+	int endian;
 
-	sprites = NULL;
-	y = 0;
-	x = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[x])
-		{
-			sprites = data->;
-			mlx_put_image_to_window(data->mlx, data->win, sprites, x
-				* IMG_WIDTH, y * IMG_WIDTH);
-			x++;
-		}
-		y++;
-	}
-}*/
-void	draw(void *sprite, t_data *data, int x, int y)
-{
-	if (data->map[y][x] != )
+	bpp = 0;
+	size_line = 0;
+	endian = 0;
+	data = mlx_get_data_addr(texture, &bpp, &size_line, &endian);
+	return (*(int*)(data + (y * size_line + x * (bpp / 8))));
 }
 
-void	draw_map(t_data *data)
+void	draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x)
 {
-	int	x;
+	void	*texture;
 	int	y;
-	void	*sprite;
+	int tex_x;
+	int	tex_y;
+	int	color;
+	double	wall_x;
 
-	x = 0;
 	y = 0;
-	while (data->map[y])
+	tex_x = 0;
+	tex_y = 0;
+	color = 0;
+	wall_x = 0;
+	texture = get_wall_texture(data, ray);
+	if (ray->side == 0)
+		wall_x = player->y + ray->perp_wall_dist * ray->dir_y;
+	else
+		wall_x = player->x + ray->perp_wall_dist * ray->dir_x;
+	tex_x = (int)(wall_x * IMG_WIDTH);
+	y = data->draw_start;
+	while (y <= data->draw_end)
 	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			sprite = NULL;
-			draw(sprite, data, x, y);
-			x++;
-		}
+		tex_y = ((y - data->draw_start) * IMG_WIDTH) / (data->draw_end - data->draw_start);
+		color = get_texture_pixel(texture, tex_x, tex_y);
+		mlx_pixel_put(data->mlx, data->win, x, y, color);
 		y++;
 	}
 }

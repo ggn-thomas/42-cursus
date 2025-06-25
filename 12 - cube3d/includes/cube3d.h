@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
 # define IMG_WIDTH 40
 
 typedef struct s_param_map
@@ -77,13 +78,15 @@ typedef struct s_data
 	int				F[3];
 	int				size_x;
 	int				size_y;
+	t_player		*player;
 }					t_data;
 
 void				error(char *mess);
-// void	ft_keypress(int keycode, t_data *data);
+void	ft_keypress(int keycode, t_data *data);
 t_map				*ft_new_node(char *line);
 void				ft_lstadd_back(t_map **lst, t_map *new);
 void				ray(t_ray *ray, t_player *player, t_data *data);
 int					window_init(t_param_map *map);
+void	draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x);
 
 #endif
