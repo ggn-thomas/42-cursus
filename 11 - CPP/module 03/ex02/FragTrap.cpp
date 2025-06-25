@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:44:43 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/05/23 13:32:42 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:15:17 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ FragTrap::~FragTrap(){
 	std::cout << "FragTrap destructor called" << std::endl;
 }
 
-void	FragTrap::highFivesGuys()
-{
+void	FragTrap::highFivesGuys(){
 	std::cout << "High fives guys !" << std::endl;
 }

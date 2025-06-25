@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 10:46:57 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/15 11:37:03 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/16 17:02:30 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static void	check_hit_wall(t_data *data, t_ray *ray, int *map_x, int *map_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			*map_x += ray->step_x;
-			ray->side = 0;
+			ray->side = 0;// mur vertical (est / ouest)
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			*map_y += ray->step_y;
-			ray->side = 1;
+			ray->side = 1;//mur horizontal (sud / nord)
 		}
 		if (data->map[*map_y]->line[*map_x] > 0)
 			ray->hit = 1;
@@ -85,13 +85,13 @@ void	wall_heigth(t_ray *ray, t_data *data)
 	int	draw_start;
 	int	draw_end;
 
-	line_heigth = (int)(ray->screen_heigth / ray->perp_wall_dist);
-	data->draw_start = -line_heigth / 2 + ray->screen_heigth /2;
-	data->draw_end = line_heigth / 2 + ray->screen_heigth / 2;
+	line_heigth = (int)(data->size_y / ray->perp_wall_dist);
+	data->draw_start = -line_heigth / 2 + data->size_y  /2;
+	data->draw_end = line_heigth / 2 + data->size_y  / 2;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	if (data->draw_end >= ray->screen_heigth)
-		data->draw_end = ray->screen_heigth - 1;
+	if (data->draw_end >= data->size_y )
+		data->draw_end = data->size_y  - 1;
 }
 
 void	ray(t_ray *ray, t_player *player, t_data *data)
@@ -101,15 +101,17 @@ void	ray(t_ray *ray, t_player *player, t_data *data)
 	int	map_y;
 	int	side;
 
-	map_x = player->x;
-	map_y = player->y;
 	side = 0;
 	x = -1;
 	while (++x < data->size_x)
 	{
+		ray->hit = 0;
+		map_x = player->x;
+		map_y = player->y;
 		ray_direction(data, player, ray, x);
 		ray_distance(ray, player, &map_x, &map_y);
 		check_hit_wall(data, ray, map_x, map_y);
 		perpendicular_distance(ray);
+		draw_vertical_line()
 	}
 }
