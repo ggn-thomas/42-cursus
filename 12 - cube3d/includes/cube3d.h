@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:47:20 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/15 11:58:37 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:31:32 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 # include <unistd.h>
 
 # define IMG_WIDTH 40
+# define SIZE_X 800
+# define SIZE_Y 600
+# define ESC 65307
+# define W 13
+# define S 1
+# define A 0
+# define D 2
+# define LEFT_ARR 123
+# define RIGHT_ARR 124
 
 typedef struct s_param_map
 {
@@ -79,14 +88,16 @@ typedef struct s_data
 	int				size_x;
 	int				size_y;
 	t_player		*player;
+	t_ray			*ray;
 }					t_data;
 
 void				error(char *mess);
-void	ft_keypress(int keycode, t_data *data);
+void				ft_keypress(int keycode, t_data *data);
 t_map				*ft_new_node(char *line);
 void				ft_lstadd_back(t_map **lst, t_map *new);
 void				ray(t_ray *ray, t_player *player, t_data *data);
-int					window_init(t_param_map *map);
-void	draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x);
-
+void				init(t_map **map);
+void				draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x);
+int 				render(t_data *data);
+void				raycasting(t_ray *ray, t_data *data);
 #endif

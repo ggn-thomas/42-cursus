@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   action.c                                           :+:      :+:    :+:   */
+/*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:45:18 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/15 12:11:33 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:30:00 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,22 +82,24 @@ void	rotate_right(t_player *player, t_data *data)
 
 void	ft_keypress(int keycode, t_data *data)
 {
-	if (keycode == 65307)//esc
+	if (keycode == ESC)
 	{
 		exit(EXIT_SUCCESS);
 	}
-	else if (keycode == 13)//w
+	else if (keycode == W)
 		ft_forward(data->player, data);
-	else if (keycode == 1)//s
+	else if (keycode == S)
 		ft_backward(data->player, data);
-	else if (keycode == 0)//a
+	else if (keycode == A)
 		ft_leftward(data->player, data);
-	else if (keycode == 2)//d
+	else if (keycode == D)
 		ft_rightward(data->player, data);
-	else if (keycode == 123)//flèche gauche
+	else if (keycode == LEFT_ARR)
 		rotate_left(data->player, data);
-	else if (keycode == 124)// " droite
+	else if (keycode == RIGHT_ARR)
 		rotate_right(data->player, data);
 }
+
+
 
 

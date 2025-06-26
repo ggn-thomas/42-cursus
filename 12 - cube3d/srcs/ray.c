@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 10:46:57 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/16 17:02:30 by thomas           ###   ########.fr       */
+/*   Updated: 2025/06/26 14:38:38 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	perpendicular_distance(t_ray *ray)
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
-void	wall_heigth(t_ray *ray, t_data *data)
+static void	wall_heigth(t_ray *ray, t_data *data)
 {
 	int	line_heigth;
 	int	draw_start;
@@ -94,7 +94,7 @@ void	wall_heigth(t_ray *ray, t_data *data)
 		data->draw_end = data->size_y  - 1;
 }
 
-void	ray(t_ray *ray, t_data *data)
+void	raycasting(t_ray *ray, t_data *data)
 {
 	int	x;
 	int	map_x;
@@ -112,6 +112,7 @@ void	ray(t_ray *ray, t_data *data)
 		ray_distance(ray, data->player, &map_x, &map_y);
 		check_hit_wall(data, ray, map_x, map_y);
 		perpendicular_distance(ray);
+		wall_heigth(ray, data);
 		draw_vertical_line(data->player, data, ray, x);
 	}
 }

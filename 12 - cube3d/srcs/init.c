@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:57:11 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/15 10:47:22 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:32:35 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,64 @@ void	load_sprites(t_data *data)
 	data->C[0] = 255;
 	data->C[1] = 255;
 	data->C[2] = 0;
-
 }
 
-
-int	window_init(t_map **map)
+t_data	data_init(t_map **map)
 {
 	t_data	data;
 
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		error("Error: Minilibx: Initializing failed!");
-	data.map = map;
-	data.size_x = 0;
-	data.size_y = 0;
-	data.win = mlx_new_window(data.mlx, data.size_x, data.size_y, "Cube3d");
-	if (!data.win)
-		error("Error: Minilibx: Window creation failed!");
-	mlx_hook(data.win, 2, 1L << 0, ft_keypress, &data);
-	load_sprites(&data);
-	mlx_loop(data.mlx);
-	draw_background(&data);
-}
-
-int	init(t_map **map)
-{
-	t_data data;
-	t_ray	ray;
-
+	data.player  = malloc(sizeof(t_player));
+	if (!data.player)
+		exit(EXIT_FAILURE);
+	data.size_x = SIZE_X;
+	data.size_y = SIZE_Y;
 	data.player->x = 0;
 	data.player->y = 0;
 	data.player->dir_x = -1;
 	data.player->dir_y = 0;
 	data.player->plane_x = 0;
 	data.player->plane_y = 0.66;
-	window_init(map);
-	init_ray(&ray, &data);
-	game_loop(&data.player, &ray);
+	data.mlx = mlx_init();
+	if (!data.mlx)
+		error("Error: Minilibx: Initializing failed!");
+	data.map = map;
+	data.win = mlx_new_window(data.mlx, data.size_x, data.size_y, "Cube3d");
+	if (!data.win)
+		error("Error: Minilibx: Window creation failed!");
+	data.ray = ray_init();
+	return (data);
+}
+
+t_ray	*ray_init(void)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		exit(EXIT_FAILURE);
+	ray->delta_dist_x = 0;
+	ray->delta_dist_y = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
+	ray->hit = 0;
+	ray->side = 0;
+	ray->perp_wall_dist = 0;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->screen_heigth = 0;
+	return (ray);
+}
+
+void	init(t_map **map)
+{
+	t_data	data;
+	t_ray	ray;
+
+	data = data_init(map);
+	load_sprites(&data);
+	mlx_hook(data.win, 2, 1L << 0, ft_keypress, &data);
+	mlx_loop_hook(data.mlx, render, &data);
+	mlx_loop(data.mlx);
 }
