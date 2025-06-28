@@ -12,18 +12,24 @@ GNL_DIR     = ./gnl
 PARSING_DIR = ./parsing
 INC_DIR     = ./includes
 
-MAIN_SRCS   = $(SRC_DIR)/main.c $(SRC_DIR)/map_init.c
+MAIN_SRCS   = $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/map_init.c \
+			  $(SRC_DIR)/cube3d_utils.c \
+			  $(SRC_DIR)/draw.c \
+			  $(SRC_DIR)/init.c \
+			  $(SRC_DIR)/movements.c \
+			  $(SRC_DIR)/ray.c \
+			  $(SRC_DIR)/render.c \
+			  $(SRC_DIR)/textures.c
 
 GNL_SRCS    = $(GNL_DIR)/get_next_line.c \
               $(GNL_DIR)/get_next_line_utils.c
-
 
 SRCS        = $(MAIN_SRCS) $(GNL_SRCS) $(PARSING_SRCS)
 
 OBJS        = $(SRCS:.c=.o)
 LIBFT       = $(LIBFT_PATH)/libft.a
 MLX         = $(MLX_PATH)/libmlx_Linux.a
-
 
 GREEN       = \033[1;32m
 YELLOW      = \033[0;33m
@@ -65,5 +71,4 @@ fclean: clean
 
 re: fclean all
 
-
-.PHONY: all clean fclean re debug show
+.PHONY: all clean fclean re
