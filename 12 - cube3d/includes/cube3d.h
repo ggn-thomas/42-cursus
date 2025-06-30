@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:47:20 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/28 17:41:35 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/30 14:00:50 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <math.h>
 
 # define IMG_WIDTH 40
-# define SIZE_X 800
-# define SIZE_Y 600
+# define SIZE_X 1920
+# define SIZE_Y 1080
 # define ESC 65307
 # define W 13
 # define S 1
@@ -72,6 +72,7 @@ typedef struct s_data
 	void			*mlx;
 	void			*win;
 	char			**map;
+	void			*img;
 	int				draw_start;
 	int				draw_end;
 	void			*NO;
@@ -92,7 +93,6 @@ typedef struct s_data
 
 void				error(char *mess);
 int					ft_keypress(int keycode, t_data *data);
-void				ray(t_ray *ray, t_player *player, t_data *data);
 void				init(char **map);
 void				draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x);
 int 				render(t_data *data);
@@ -100,6 +100,7 @@ void				raycasting(t_ray *ray, t_data *data);
 void				wall_heigth(t_ray *ray, t_data *data);
 int					get_texture_pixel(void *texture, int x, int y);
 void    			*get_wall_texture(t_data *data, t_ray *ray);
+void	load_sprites(t_data *data);
 
 
 //tmp

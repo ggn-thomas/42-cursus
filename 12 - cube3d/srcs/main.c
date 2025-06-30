@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:56:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/28 17:42:42 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:42:12 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**map_init(char *file)
 	if (!map)
 		error("Error: Memory allocation failed!");
 	line = get_next_line(fd);
-	while (map[i])
+	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);
 		free(line);

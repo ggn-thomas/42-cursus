@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 10:46:57 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/28 17:35:51 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:59:36 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ static void	check_hit_wall(t_data *data, t_ray *ray, int *map_x, int *map_y)
 			*map_y += ray->step_y;
 			ray->side = 1;//mur horizontal (sud / nord)
 		}
-		if (*map_x < 0 || *map_y < 0 || !data->map[*map_y] || !data->map[*map_y][*map_x] || 
-			data->map[*map_y][*map_x] != '0')
+		if (data->map[*map_y][*map_x] != '0')
+		{
 			ray->hit = 1;
+		}
 	}
 }
 
