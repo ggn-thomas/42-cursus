@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 10:46:57 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/30 13:59:36 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:00:54 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ static void	check_hit_wall(t_data *data, t_ray *ray, int *map_x, int *map_y)
 			*map_y += ray->step_y;
 			ray->side = 1;//mur horizontal (sud / nord)
 		}
-		if (data->map[*map_y][*map_x] != '0')
-		{
+		if (data->map[*map_y][*map_x] == '1')
 			ray->hit = 1;
-		}
 	}
 }
 
@@ -85,13 +83,22 @@ void	wall_heigth(t_ray *ray, t_data *data)
 {
 	int	line_heigth;
 
+	// Protection contre division par zéro
+	if (ray->perp_wall_dist <= 0.001)
+		ray->perp_wall_dist = 0.001;
+		
 	line_heigth = (int)(data->size_y / ray->perp_wall_dist);
-	data->draw_start = -line_heigth / 2 + data->size_y  /2;
-	data->draw_end = line_heigth / 2 + data->size_y  / 2;
+	data->draw_start = -line_heigth / 2 + data->size_y / 2;
+	data->draw_end = line_heigth / 2 + data->size_y / 2;
+	
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	if (data->draw_end >= data->size_y )
-		data->draw_end = data->size_y  - 1;
+	if (data->draw_end >= data->size_y)
+		data->draw_end = data->size_y - 1;
+		
+	// DEBUG temporaire
+	if (line_heigth <= 0)
+		printf("ERROR: line_heigth=%d perp_dist=%.3f\n", line_heigth, ray->perp_wall_dist);
 }
 
 void	raycasting(t_ray *ray, t_data *data)
@@ -99,9 +106,7 @@ void	raycasting(t_ray *ray, t_data *data)
 	int	x;
 	int	map_x;
 	int	map_y;
-	int	side;
 
-	side = 0;
 	x = -1;
 	while (++x < data->size_x)
 	{

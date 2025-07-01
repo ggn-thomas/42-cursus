@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:47:20 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/30 14:00:50 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:28:56 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,42 @@
 
 # include "../gnl/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
 # include "X11/X.h"
 # include "X11/Xlib.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <string.h>
+# include <sys/time.h>
+# include <time.h>
 
-# define IMG_WIDTH 40
+# define IMG_WIDTH 64
 # define SIZE_X 1920
 # define SIZE_Y 1080
 # define ESC 65307
-# define W 13
-# define S 1
-# define A 0
-# define D 2
-# define LEFT_ARR 123
-# define RIGHT_ARR 124
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define LEFT_ARR 65361
+# define RIGHT_ARR 65363
 
-typedef struct s_param_map
+/*
+typedef struct s_data_map
 {
 	char			**map;
-	int				length;
-	int				width;
-}					t_param_map;
+	char			*path_texture1;
+	char			*path_texture2;
+	char			*path_texture3;
+	char			*path_texture4;
+	int				size_x;
+	int				size_y;
+	int				C[3];//couleur du sol (RGB) ex: C[0] = 255, C[1] = 128, C[0] = 0
+	int				F[3];
+	
+}					t_data_map;*/
 
 typedef struct s_player
 {
@@ -69,6 +81,9 @@ typedef struct s_ray
 
 typedef struct s_data
 {
+	int				frame_count;
+	clock_t			last_fps_time;
+	int				fps;
 	void			*mlx;
 	void			*win;
 	char			**map;
@@ -87,20 +102,25 @@ typedef struct s_data
 	int				bits_per_pixel;
 	int				endian;
 	char			*img_data;
+	int				sprites_load;
 	t_player		*player;
 	t_ray			*ray;
 }					t_data;
 
-void				error(char *mess);
+void				error(char *mess, t_data *data);
+void				ft_free_map(char **map);
+void				ft_exit(t_data *data);
+int					close_window(t_data *data);
 int					ft_keypress(int keycode, t_data *data);
-void				init(char **map);
+void				game_engine(char **map);
 void				draw_vertical_line(t_player *player, t_data *data, t_ray *ray, int x);
 int 				render(t_data *data);
 void				raycasting(t_ray *ray, t_data *data);
 void				wall_heigth(t_ray *ray, t_data *data);
 int					get_texture_pixel(void *texture, int x, int y);
 void    			*get_wall_texture(t_data *data, t_ray *ray);
-void	load_sprites(t_data *data);
+void				load_sprites(t_data *data);
+
 
 
 //tmp

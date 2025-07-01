@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 12:56:22 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/06/30 12:42:12 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:41:48 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	counter_line(char *file)
 	counter = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Error: file descriptor is invalid!");
+	{
+		printf("Error: File descriptor is invalid!");
+		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -51,18 +54,31 @@ char	**map_init(char *file)
 	char *line;
 	int	i;
 	int	fd;
+	int count;
 
+	count = counter_line(file);
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Error: file descriptor is invalid!");
-	map = malloc(sizeof(char*) * (counter_line(file) + 1));
+	{
+		printf("Error: Cannot open file!\n");
+		exit(EXIT_FAILURE);
+	}
+	map = malloc(sizeof(char*) * (count + 1));
 	if (!map)
-		error("Error: Memory allocation failed!");
+	{
+		printf("Error: Memomy allocation failed!\n");
+		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		map[i] = ft_strdup(line);
+		if (!map[i])
+		{
+			printf("Error: Memomy allocation failed!\n");
+			ft_free_map(map);
+		}
 		free(line);
 		line = NULL;
 		i++;
@@ -79,6 +95,6 @@ int	main(int ac, char **av)
 	char	**map;
 	
 	map = map_init(av[1]);
-	init(map);
+	game_engine(map);
 	return (0);
 }

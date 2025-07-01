@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 16:18:05 by thomas            #+#    #+#             */
-/*   Updated: 2024/12/18 09:32:34 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:19:17 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_stack_line	*stack_init(void *param)
 	fd = open(param, O_RDONLY);
 	if (fd < 0)
 	{
-		write(1, "Error\nFile descriptor is invalide !\n", 35);
+		write(1, "Error\nFile descriptor is invalid !\n", 35);
 		return (0);
 	}
 	line = get_next_line(fd);

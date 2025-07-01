@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:08:50 by thomas            #+#    #+#             */
-/*   Updated: 2025/06/30 13:59:59 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:44:18 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@ void	load_sprites(t_data *data)
 	w = IMG_WIDTH;
 	data->EA = mlx_xpm_file_to_image(data->mlx, "textures/wood.xpm", &w, &w);
 	data->WE = mlx_xpm_file_to_image(data->mlx, "textures/wood.xpm", &w, &w);
-	data->SO = mlx_xpm_file_to_image(data->mlx, "textures/wall_3.xpm", &w, &w);
-	data->NO = mlx_xpm_file_to_image(data->mlx, "textures/wall_3.xpm", &w, &w);
+	data->SO = mlx_xpm_file_to_image(data->mlx, "textures/wood.xpm", &w, &w);
+	data->NO = mlx_xpm_file_to_image(data->mlx, "textures/wood.xpm", &w, &w);
 	if (!data->EA || !data->WE || !data->SO || !data->NO)
-		error("Error: Image loading failed!");
+		error("Error: Image loading failed!", data);
 	data->F[0] = 64;
 	data->F[1] = 64;
 	data->F[2] = 64;
 	data->C[0] = 135;
 	data->C[1] = 205;
 	data->C[2] = 235;
+	data->sprites_load = 1;
 }
 
 int	get_texture_pixel(void *texture, int x, int y)
