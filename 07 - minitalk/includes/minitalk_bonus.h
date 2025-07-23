@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 12:46:33 by thomas            #+#    #+#             */
-/*   Updated: 2025/07/10 14:27:07 by thomas           ###   ########.fr       */
+/*   Created: 2025/01/06 12:02:40 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/07/22 14:52:58 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef MINITALK_BONUS_H
+# define MINITALK_BONUS_H
 
-int main()
-{
-    Harl    harl;
+# include "../libft/libft.h"
+# include <signal.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <unistd.h>
 
-    harl.complain("DEBUG");
-    harl.complain("INFO");
-    harl.complain("WARNING");
-    harl.complain("ERROR");
-
-    return 0;
-}
+#endif
