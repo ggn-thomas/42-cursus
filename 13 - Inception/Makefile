@@ -11,19 +11,19 @@ build:
 	mkdir -p /home/thgaugai/data/mariadb
 	mkdir -p /home/thgaugai/data/wordpress
 	@echo "$(GREEN)Building images...$(NC)"
-	docker-compose -f $(COMPOSE_FILE) up --build -d
+	docker compose -f $(COMPOSE_FILE) up --build -d
 
 kill:
 	@echo "$(RED)Killing services...$(NC)"
-	docker-compose -f $(COMPOSE_FILE) kill
+	docker compose -f $(COMPOSE_FILE) kill
 
 down:
 	@echo "$(RED)Discontinuation of services...$(NC)"
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose -f $(COMPOSE_FILE) down
 
 clean:
 	@echo "$(RED)Cleaning docker resources...$(NC)"
-	docker-compose -f $(COMPOSE_FILE) down -v
+	docker compose -f $(COMPOSE_FILE) down -v
 
 fclean: clean
 	@echo "$(RED)Full clean...$(NC)"

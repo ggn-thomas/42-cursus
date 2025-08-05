@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# Attendre que MariaDB soit prêt
 echo "Attente de MariaDB..."
 sleep 15
 
-# Aller dans le répertoire WordPress
 cd /var/www/wordpress
 
-# Supprimer wp-config.php s'il existe déjà
 rm -f wp-config.php
 
-# Tester la connexion à la base de données
 echo "Test de connexion à la base de données..."
 until mysql -h mariadb -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -e "SELECT 1" >/dev/null 2>&1; do
     echo "En attente de la base de données..."
