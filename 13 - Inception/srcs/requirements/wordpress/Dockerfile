@@ -23,4 +23,4 @@ RUN chmod +x auto_config.sh
 EXPOSE 9000
 
 RUN mkdir -p /run/php
-ENTRYPOINT ["bash", "/auto_config.sh"]
+ENTRYPOINT ["/auto_config.sh"]
