@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:11:21 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/05 17:58:24 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:31:41 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void    AForm::execute(Bureaucrat const &executor) const {
     if (!this->_isSigned)
         throw FormNotSignedException();
     if (executor.getGrade() > this->getGradeExecute())
-        throw GradeTooHighException();
+        throw GradeTooLowException();
     executeAction();
 }

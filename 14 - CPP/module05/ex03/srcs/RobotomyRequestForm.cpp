@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 10:44:35 by thomas            #+#    #+#             */
-/*   Updated: 2025/07/31 17:59:26 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/06 14:22:15 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &cpy) : AForm
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &robotomyRequestForm){
     std::cout << "RobotomyRequestForm assignement operator constructor called" << std::endl;
     if (this != &robotomyRequestForm)
-        this->target != robotomyRequestForm.target;
+        this->target = robotomyRequestForm.target;
     return *this;
 }
 

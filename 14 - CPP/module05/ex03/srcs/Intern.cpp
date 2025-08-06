@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 18:12:01 by thomas            #+#    #+#             */
-/*   Updated: 2025/07/31 18:30:30 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/06 14:28:52 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,31 @@ Intern Intern::operator=(const Intern& intern){
 }
 
 AForm *Intern::makeForm(std::string name, std::string target){
-    if (name == "robotomy request")
-        return new RobotomyRequestForm(target);
-    else if (name == "shrubbery creation")
-        return new ShrubberyCreationForm(target);
-    else if (name == "president pardon")
-        return new PresidentialPardonForm(target);
-    else{
-        std::cout << "No forms by that name : " << name << " has been found." << std::endl;
-        return (NULL);
+    AForm   *form;
+    std::string tabForm[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
+    int j = -1;
+    
+    for (int i = 0; i < 3 ; i++){
+        if (name == tabForm[i])
+            j = i; 
     }
+
+    switch(j) {
+        case 0:
+            std::cout << "Intern creates " << name << " form" << std::endl;
+            form = new RobotomyRequestForm(target);
+            break;
+        case 1:
+            std::cout << "Intern creates " << name << " form" << std::endl;
+            form = new PresidentialPardonForm(target);
+            break;
+        case 2:
+            std::cout << "Intern creates " << name << " form" << std::endl;
+            form = new ShrubberyCreationForm(target);
+            break;
+        case -1:
+            std::cerr << "Error: " << name << " form doesn't exist !" << std::endl;
+            form = 0;
+    }
+    return form;
 }

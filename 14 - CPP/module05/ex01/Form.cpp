@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:11:21 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/05 18:01:23 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:52:53 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ Form::Form () : _name("default"), _isSigned(false), _gradeExecute(150), _gradeSi
 
 Form::Form (const std::string name, const int gradeExecute, const int gradeSign) : _name(name), _isSigned(false), _gradeExecute(gradeExecute), _gradeSign(gradeSign){
     std::cout << "Form personnalized constructor called" << std::endl;
+    if (gradeExecute > 150 || gradeSign > 150)
+        (throw GradeTooLowException());
+    else if (gradeExecute < 1 || gradeSign < 1)
+        (throw GradeTooHighException());
 }
 
 Form::~Form(){

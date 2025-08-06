@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 12:54:03 by thomas            #+#    #+#             */
-/*   Updated: 2025/07/31 17:59:36 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/06 14:05:37 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void ShrubberyCreationForm::executeAction() const {
     std::string fileName;
     std::string asciiTrees;
 
-    asciiTrees = "/\
-                 /  \
-                /    \
-               /______\
-                  || ";
+    asciiTrees ="    /\\\n"
+                "   /  \\\n"
+                "  /    \\\n"
+                " /______\\\n"
+                "    ||\n";
     fileName = this->target + "_shrubbery";
     std::ofstream newFile(fileName.c_str());
     if (!newFile.is_open())
