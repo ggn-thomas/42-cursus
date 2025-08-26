@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:20:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/25 16:40:06 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/26 10:17:56 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ Data* Serializer::deserialize(uintptr_t raw){
 uintptr_t Serializer::serialize(Data *ptr){
     return (reinterpret_cast<uintptr_t>(ptr));
 }
+
