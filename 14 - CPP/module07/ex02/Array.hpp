@@ -15,16 +15,25 @@
 
 #include <iostream>
 
+template<typename T>
 class Array {
+    private:
+        T               *_array;
+        size_t          size;
+
     public:
         Array();
         Array(unsigned int n);
         Array(const Array &cpy);
         Array& operator=(const Array &cpy);
+        Array& operator[](unsigned int n);
+        Array& operator[](unsigned int n) const;
         ~Array();
 
     
     int size();
     
 };
+
+#include "Array.tpp"
 #endif
