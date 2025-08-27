@@ -46,7 +46,7 @@ Array<T> &Array<T>::operator=(Array const &cpy){
 
 template<typename T>
 T &Array<T>::operator[](unsigned int n){
-    if (n > _size)
+    if (n >= _size)
         throw (BadIndex());
     else
         return _array[n];
