@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 13:18:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/26 13:18:32 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:55:17 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ Array<T> &Array<T>::operator=(Array const &cpy){
 
 template<typename T>
 T &Array<T>::operator[](unsigned int n){
-    
+    if (n > _size)
+        throw (BadIndex());
+    else
+        return _array[n];
 }
 
 // destructor
@@ -55,7 +58,15 @@ Array<T>::~Array(){
     delete _array;
 }
 
+//exception
+template<typename T>
+const char* Array<T>::BadIndex::what() const throw(){
+    return "This index is outside the array!";
+}
 
-
+template<typename T>
+size_t Array<T>::size() const {
+    return (this->_size);
+}
 
 #endif

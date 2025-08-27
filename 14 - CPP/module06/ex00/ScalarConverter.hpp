@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 15:24:28 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/08/25 15:57:27 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:00:40 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@
 class ScalarConverter {
     private:
         std::string str;
-        
-    public:
         ScalarConverter();
         ScalarConverter(std::string str);
         ~ScalarConverter();
         ScalarConverter(const ScalarConverter &cpy);
+        
+    public:
         ScalarConverter operator=(const ScalarConverter &sc);
 
     static void convert(std::string str);
 };
 
-int checkTypes(std::string str);
+int     checkTypes(std::string str);
 void    doubleConverter(std::string str);
-void floatConverter(std::string str);
-void intConverter(std::string str);
-void charConverter(std::string str);
-void pliteralConverter(std::string str);
+void    floatConverter(std::string str);
+void    intConverter(std::string str);
+void    charConverter(std::string str);
+void    pliteralConverter(std::string str);
 
 #endif

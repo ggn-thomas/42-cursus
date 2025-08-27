@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   converter.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:18:49 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/25 16:13:40 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:09:06 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void pliteralConverter(std::string str){
 void charConverter(std::string str){
     char c = str[0];
     
-    std::cout << "char: " << std::endl;
+    std::cout << "char: ";
     if (isprint(c)){
         std::cout << c << std::endl;
         std::cout << "int: " << static_cast<int>(c) << std::endl;   
@@ -89,8 +89,8 @@ void floatConverter(std::string str){
     if (val > FLT_MAX || val < FLT_MIN)
         std::cout << "impossible" << std::endl;
     else
-        std::cout << val << ".0f" << std::endl;
-    std::cout << "double: " << static_cast<double>(val) << ".0" << std::endl;
+        std::cout << val << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(val) << std::endl;
 }
 
 void    doubleConverter(std::string str){
@@ -114,10 +114,10 @@ void    doubleConverter(std::string str){
     if (val > FLT_MAX || val < FLT_MIN)
         std::cout << "impossible" << std::endl;
     else
-        std::cout << static_cast<float>(val) << ".0f" << std::endl;
+        std::cout << static_cast<float>(val) << "f" << std::endl;
     std::cout << "double: ";
 	if (val < MIN_DOUBLE || val > MAX_DOUBLE)
 		std::cout << "impossible" << std::endl;
 	else
-		std::cout << val << ".0" << std::endl;
+		std::cout << val << std::endl;
 }

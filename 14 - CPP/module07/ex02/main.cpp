@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:45:04 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/26 11:45:13 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:59:11 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
+template<typename T>
 int main(){
+    Array arr(5);
+    
+    arr.size(10);
+    arr.size(2);
+    
     
 }

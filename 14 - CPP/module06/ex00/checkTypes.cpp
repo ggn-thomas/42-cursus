@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkTypes.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 14:06:12 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/25 16:11:44 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:06:55 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int isDouble(std::string str, int dot){
             i++;
         if (!(isdigit(str[i])))
             return 0;
+        i++;
     }
     return 1;
 }

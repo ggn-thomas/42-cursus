@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:41:46 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/26 13:17:04 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 12:57:11 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@ template<typename T>
 class Array {
     private:
         T               *_array;
-        size_t          size;
+        size_t          _size;
 
     public:
         Array();
         Array(unsigned int n);
         Array(const Array &cpy);
         Array& operator=(const Array &cpy);
-        Array& operator[](unsigned int n);
-        Array& operator[](unsigned int n) const;
+        T& operator[](unsigned int n);
         ~Array();
+    
+    size_t size () const ;
+    class BadIndex : public std::exception {
+        public:
+            virtual const char* what() const throw();
+    }
+    
 
-    
-    int size();
-    
 };
 
 #include "Array.tpp"

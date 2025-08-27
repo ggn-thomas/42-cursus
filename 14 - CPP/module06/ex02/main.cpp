@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:38:37 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/25 18:13:53 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 11:40:59 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,34 @@ void    identify(Base* p){
 
 void identify(Base& p){
     try {
-        dynamic_cast<A&>(p);
+        A& a = dynamic_cast<A&>(p);
+        (void)a;
         std::cout << "A" << std::endl;
         return ;
     }
     catch (std::exception&){}
     try {
-        dynamic_cast<B&>(p);
+        B& b = dynamic_cast<B&>(p);
+        (void)b;
         std::cout << "B" << std::endl;
         return ;
     }
     catch (std::exception&) {}
     try {
-        dynamic_cast<C&>(p);
+        C& c =dynamic_cast<C&>(p);
+        (void)c;
         std::cout << "C" << std::endl;
         return ;
     }
     catch (std::exception&) {}
 }
 
-
 int main() {
     Base *ptr = generate();
     Base &ref = *ptr;
+    std::cout << "identify(ptr) : ";
     identify(ptr);
+    std::cout << "identify(ref): ";
     identify(ref);
     
     delete ptr;
