@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 13:18:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/27 14:12:12 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:02:14 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ Array<T> &Array<T>::operator=(Array const &cpy){
         }
     }
     return *this;
+}
+
+template<typename T>
+T &Array<T>::operator[](unsigned int n) const{
+    if (n >= _size)
+        throw (BadIndex());
+    else
+        return _array[n];
 }
 
 template<typename T>

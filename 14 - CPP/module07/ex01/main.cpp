@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:03:39 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/26 13:09:38 by thomas           ###   ########.fr       */
+/*   Updated: 2025/08/27 14:55:17 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main(){
     for (int i = 0; i < 2; i++)
         std::cout << tabInt[i] << ", ";
         
-
     iter(tab, 12, toUPPER);
     std::cout << std::endl << tab << std::endl;
 }

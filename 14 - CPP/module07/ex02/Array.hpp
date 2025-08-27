@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:41:46 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/27 14:12:26 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:58:10 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Array {
         Array(const Array &cpy);
         Array& operator=(const Array &cpy);
         T& operator[](unsigned int n);
+        T& operator[](unsigned int n) const;
         ~Array();
     
     size_t size () const ;
