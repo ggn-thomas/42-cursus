@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 13:18:29 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/27 12:55:17 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:12:12 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Array<T> &Array<T>::operator=(Array const &cpy){
         this->_size = cpy._size;
         this->_array = new T[cpy._size];
         for (size_t i = 0; i < _size ; i++){
-            this->_array[i] = cpy._array[i]
+            this->_array[i] = cpy._array[i];
         }
     }
     return *this;

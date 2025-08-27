@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 11:41:46 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/27 12:57:11 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:12:26 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Array {
     class BadIndex : public std::exception {
         public:
             virtual const char* what() const throw();
-    }
+    };
     
 
 };
