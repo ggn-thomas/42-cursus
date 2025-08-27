@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 17:38:37 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/27 11:40:59 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:39:18 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "B.hpp"
 #include "C.hpp"
 #include <cstdlib>
+#include <time.h>
 
 Base* generate(void) {
     int random = std::rand() % 3;
@@ -64,6 +65,7 @@ void identify(Base& p){
 }
 
 int main() {
+    srand (time(NULL));
     Base *ptr = generate();
     Base &ref = *ptr;
     std::cout << "identify(ptr) : ";
