@@ -70,6 +70,7 @@ void intConverter(std::string str){
 
 void floatConverter(std::string str){
     float val = atof(str.c_str());
+    size_t flag = str.find(".0f");
     
     std::cout << "char: ";
     if (val < 0 || val > 127)
@@ -88,14 +89,23 @@ void floatConverter(std::string str){
     std::cout << "float: ";
     if (val > FLT_MAX || val < FLT_MIN)
         std::cout << "impossible" << std::endl;
+    else {
+        if (flag != std::string::npos)
+            std::cout << val << ".0f" << std::endl;
+        else
+            std::cout << val << "f" << std::endl;
+    }
+    std::cout << "double: " ;
+    if (flag != std::string::npos)
+        std::cout << static_cast<double>(val) << ".0" << std::endl;
     else
-        std::cout << val << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(val) << std::endl;
+        std::cout << static_cast<double>(val) << std::endl;
 }
 
 void    doubleConverter(std::string str){
     double val = atof(str.c_str());
-    
+    size_t flag = str.find(".0");
+
     std::cout << "char: ";
     if (val < 0 || val > 127)
         std::cout << "impossible" << std::endl;
@@ -113,11 +123,19 @@ void    doubleConverter(std::string str){
     std::cout << "float: ";
     if (val > FLT_MAX || val < FLT_MIN)
         std::cout << "impossible" << std::endl;
-    else
-        std::cout << static_cast<float>(val) << "f" << std::endl;
+    else {
+        if (flag != std::string::npos)
+            std::cout << val << ".0f" << std::endl;
+        else
+            std::cout << val << "f" << std::endl;
+    }
     std::cout << "double: ";
 	if (val < MIN_DOUBLE || val > MAX_DOUBLE)
 		std::cout << "impossible" << std::endl;
-	else
-		std::cout << val << std::endl;
+    else {
+        if (flag != std::string::npos)
+            std::cout << static_cast<double>(val) << ".0" << std::endl;
+        else
+            std::cout << static_cast<double>(val) << std::endl;
+    }
 }

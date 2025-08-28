@@ -18,8 +18,8 @@
 template<typename T>
 class Array {
     private:
-        T               *_array;
-        size_t          _size;
+        T                    *_array;
+        unsigned int          _size;
 
     public:
         Array();

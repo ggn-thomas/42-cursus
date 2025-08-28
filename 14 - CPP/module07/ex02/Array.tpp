@@ -23,8 +23,8 @@ Array<T>::Array(unsigned int n) : _array(new T[n]), _size(n){
 }
 
 template<typename T>
-Array<T>::Array(const Array &cpy) : _array(new T[cpy._size], _size(cpy._size)) {
-    for (size_t i = 0; i < this->_size; i++){
+Array<T>::Array(const Array &cpy) : _array(new T[cpy._size]), _size(cpy._size) {
+    for (unsigned int i = 0; i < this->_size; i++){
         this->_array[i] = cpy._array[i];
     }
 }
