@@ -22,7 +22,7 @@ void    toUPPER(char &c){
 }
 
 template<typename T_tab, typename T_function>
-void    iter(T_tab *tab, size_t len, T_function function) {
+void    iter(T_tab *tab, size_t len, T_function& function) {
     for (size_t i = 0; i < len - 1; i++)
         function(tab[i]);
 }
