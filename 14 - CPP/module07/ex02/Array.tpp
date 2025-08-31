@@ -63,7 +63,7 @@ T &Array<T>::operator[](unsigned int n){
 // destructor
 template<typename T>
 Array<T>::~Array(){
-    delete _array;
+    delete [] _array;
 }
 
 //exception

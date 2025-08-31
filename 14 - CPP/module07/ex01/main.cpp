@@ -13,18 +13,12 @@
 #include "iter.hpp"
 
 
-void    incremente(int &value){
+void    increment(int &value){
     value+=10;
 }
 
-void    toUPPER(char &c){
+void    toUpper(char &c){
     c = toupper(c);
-}
-
-template<typename T_tab, typename T_function>
-void    iter(T_tab *tab, size_t len, T_function& function) {
-    for (size_t i = 0; i < len - 1; i++)
-        function(tab[i]);
 }
 
 int main(){
@@ -32,10 +26,10 @@ int main(){
     
     int tabInt[] = {1,99};
 
-    iter(tabInt, 2, incremente);
+    iter(tabInt, 2, increment);
     for (int i = 0; i < 2; i++)
         std::cout << tabInt[i] << ", ";
         
-    iter(tab, 12, toUPPER);
+    iter(tab, 12, toUpper);
     std::cout << std::endl << tab << std::endl;
 }
