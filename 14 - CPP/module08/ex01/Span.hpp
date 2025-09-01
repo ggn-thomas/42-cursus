@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:55:06 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/09/01 12:33:51 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/09/01 17:19:06 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 
 #include <vector>
 #include <iostream>
+#include <limits>
+#include <algorithm>
+
+#define INT_MAX 2147483647
 
 class Span {
     private:
-        unsigned int _n;
-        std::vector<int> _vec;
+        unsigned int _limits;
+        std::vector<int> _numbers;
 
     public:
         Span();
@@ -28,11 +32,18 @@ class Span {
         Span(const Span& cpy);
         Span operator=(const Span& cpy);
     
-        void    addNumber(int n);
+        void    addNumber(unsigned int n);
+        int     shortestSpan();
+        int     longestSpan();
         
-    class SpanAlreadyFull : public std::exception {
+    class LimitsExceed : public std::exception {
         public:
             const char* what() const throw ();
+    };
+    
+    class  InsufficientNumbers : public std::exception {
+        public:
+            const char* what() const throw();
     };
 };
 #endif
