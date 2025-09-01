@@ -5,25 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/26 09:53:39 by thomas            #+#    #+#             */
-/*   Updated: 2025/08/30 17:04:09 by thgaugai         ###   ########.fr       */
+/*   Created: 2025/09/01 12:13:36 by thgaugai          #+#    #+#             */
+/*   Updated: 2025/09/01 12:37:40 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
+#include "Span.hpp"
+#include <ctime>
+#include <cstdlib>
 
-int main( void ) {
-    int a = 2;
-    int b = 3;
-    ::swap( a, b );
-    std::cout << "a = " << a << ", b = " << b << std::endl;
-    std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-    std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-    std::string c = "chaine1";
-    std::string d = "chaine2";
-    ::swap(c, d);
-    std::cout << "c = " << c << ", d = " << d << std::endl;
-    std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-    std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+int main(){
+    Span span[10];
+    
+    srand(time(NULL));
+    for (int i = 0; i < 9; i++){
+        span[i] = rand();
+    }
+
+    try {
+        span->addNumber(15);
+    }
+    catch (std::exception &e){
+        std::cerr << e.what() << std::endl;
+    }
+
     return 0;
 }
