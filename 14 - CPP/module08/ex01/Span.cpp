@@ -6,7 +6,7 @@
 /*   By: thgaugai <thgaugai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 12:09:17 by thgaugai          #+#    #+#             */
-/*   Updated: 2025/09/01 17:45:00 by thgaugai         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:08:49 by thgaugai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,19 @@ const char* Span::InsufficientNumbers::what() const throw() {
 }
 
 int Span::shortestSpan(){
-    int span = INT_MAX;
+    int span = 2147483647;
     int tmp = 0;
     
     if (_numbers.size() <= 2)
         throw (InsufficientNumbers());
     std::sort(_numbers.begin(), _numbers.end());
 
-    for (unsigned long i = 0; (i < _numbers.size() - 1) ; i++){
-        tmp = _numbers[i + 1] - _numbers[i];
-        if (tmp < span)
-           span = tmp;
+    for (unsigned long i = 0; (i < _numbers.size()) ; i++){
+        for (unsigned long j = i + 1; (j < _numbers.size()); j++){
+            tmp = _numbers[j] - _numbers[i];
+            if (tmp < span)
+                span = tmp;
+        }
     }
     return span;
 }
@@ -61,17 +63,18 @@ int Span::longestSpan(){
     if (_numbers.size() <= 2)
         throw (InsufficientNumbers());
     std::sort(_numbers.begin(), _numbers.end());
-
-    for (unsigned long i = 0; (i < _numbers.size() - 1) ; i++){
-        tmp = _numbers[i + 1] - _numbers[i];
-        if (tmp > span)
-           span = tmp;
+    for (unsigned long i = 0; (i < _numbers.size()) ; i++){
+        for (unsigned long j = i + 1; (j < _numbers.size()); j++){
+            tmp = _numbers[j] - _numbers[i];
+            if (tmp > span)
+                span = tmp;
+        }
     }
     return span;
 }
 
 void Span::addNumber(unsigned int n){
-    if (n >= _limits)
+    if (_numbers.size() >= _limits)
         throw (LimitsExceed());
     else
         _numbers.push_back(n);

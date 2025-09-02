@@ -21,16 +21,41 @@ int main()
     --it;
     while (it != ite)
     {
-    std::cout << *it << std::endl;
-    ++it;
+        std::cout << *it << std::endl;
+        ++it;
     }
     std::stack<int> s(mstack);
 
 
-    // std::cout << "-------------------------------------TEST CONSTANT ITERATOR-------------------------------------" << std::endl << std::endl;
+    std::cout << "-------------------------------------TEST CONSTANT ITERATOR-------------------------------------" << std::endl << std::endl;
 
     // const MutantStack<int>& const_mstack = mstack;
     // MutantStack<int>::const_iterator it_const = const_mstack.begin();
     // *it_const = 999;
     // return 0;
-}
+
+    std::cout << "-------------------------------------PERSONNAL MAIN-------------------------------------" << std::endl << std::endl;
+
+    MutantStack<const char*> strStack;
+    strStack.push("hello");
+    strStack.push("world");
+    std::cout << "top: " << strStack.top() << std::endl;
+    std::cout << "pop()" << std::endl;
+    strStack.pop();
+    std::cout << "size: " << strStack.size() << std::endl;
+    strStack.push("bye");
+    strStack.push("42");
+    strStack.push("testttt");
+
+    MutantStack<const char*>::iterator str_it = strStack.begin();
+    MutantStack<const char*>::iterator str_ite = strStack.end();
+
+    std::cout << "print container : " << std::endl;
+    while (str_it != str_ite)
+    {
+        std::cout << *str_it << std::endl;
+        ++str_it;
+    }
+    std::stack<const char*> str(strStack);
+
+};

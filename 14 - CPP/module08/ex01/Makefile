@@ -3,7 +3,7 @@ SRCS =  main.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = container
+NAME = span
 
 CC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98 -g
