@@ -5,14 +5,6 @@ const char* ValueNotFound::what() const throw() {
     return "Value not found in container!";
 }
 
-template<typename T>
-typename T::iterator   easyfind(T& container, int val){
-    typename T::iterator it = find(container.begin(), container.end(), val);
-    if (it == container.end())
-        throw (ValueNotFound());
-    return it;
-}
-
 int main(){
     std::vector<int> vec;
     vec.push_back(1);

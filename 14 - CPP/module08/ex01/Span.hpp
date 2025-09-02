@@ -18,7 +18,7 @@
 #include <limits>
 #include <algorithm>
 
-#define INT_MAX 2147483647
+
 
 class Span {
     private:

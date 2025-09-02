@@ -1,0 +1,36 @@
+
+#include "MutantStack.hpp"
+
+int main()
+{
+    std::cout << "-------------------------------------SUBJECT MAIN-------------------------------------" << std::endl << std::endl; 
+    MutantStack<int> mstack;
+    mstack.push(5);
+    mstack.push(17);
+    std::cout << mstack.top() << std::endl;
+    mstack.pop();
+    std::cout << mstack.size() << std::endl;
+    mstack.push(3);
+    mstack.push(5);
+    mstack.push(737);
+    //[...]
+    mstack.push(0);
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+    ++it;
+    --it;
+    while (it != ite)
+    {
+    std::cout << *it << std::endl;
+    ++it;
+    }
+    std::stack<int> s(mstack);
+
+
+    // std::cout << "-------------------------------------TEST CONSTANT ITERATOR-------------------------------------" << std::endl << std::endl;
+
+    // const MutantStack<int>& const_mstack = mstack;
+    // MutantStack<int>::const_iterator it_const = const_mstack.begin();
+    // *it_const = 999;
+    // return 0;
+}

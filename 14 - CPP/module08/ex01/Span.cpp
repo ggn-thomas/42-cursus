@@ -46,7 +46,7 @@ int Span::shortestSpan(){
         throw (InsufficientNumbers());
     std::sort(_numbers.begin(), _numbers.end());
 
-    for (unsigned long i = 0; i < _numbers.size() ; i++){
+    for (unsigned long i = 0; (i < _numbers.size() - 1) ; i++){
         tmp = _numbers[i + 1] - _numbers[i];
         if (tmp < span)
            span = tmp;
@@ -62,7 +62,7 @@ int Span::longestSpan(){
         throw (InsufficientNumbers());
     std::sort(_numbers.begin(), _numbers.end());
 
-    for (unsigned long i = 0; i < _numbers.size() ; i++){
+    for (unsigned long i = 0; (i < _numbers.size() - 1) ; i++){
         tmp = _numbers[i + 1] - _numbers[i];
         if (tmp > span)
            span = tmp;

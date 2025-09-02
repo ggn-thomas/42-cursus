@@ -16,6 +16,7 @@
 
 int main(){
     Span span(10000);
+    Span SpanCrash(10000);
 
     try {
         span.addNumber(15);
@@ -37,6 +38,22 @@ int main(){
     catch (std::exception &e){
         std::cerr << e.what() << std::endl;
     }
+
+
+    try {
+        // SpanCrash.addNumber(5);
+        int longS = SpanCrash.longestSpan();
+        int shortS = SpanCrash.shortestSpan();
+
+        std::cout << "short span: " << shortS << " | " << "long span: " << longS << std::endl;
+    }
+    catch (std::exception &e){
+        std::cerr << e.what() << std::endl;
+    }
+
+
+
+
 
     return 0;
 }
