@@ -35,7 +35,7 @@ typename MutantStack<T>::const_iterator MutantStack<T>::end() const{
 
 template<typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::begin() const{
-    return (this->c.end());
+    return (this->c.begin());
 }
 
 
