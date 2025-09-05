@@ -7,15 +7,5 @@
 #include <limits>
 #include <cstdlib>
 
-class BitcoinExchange {
-    private:
-        std::map<std::string, double> _csv;
-
-    public:
-        BitcoinExchange();
-        ~BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange& cpy);
-        BitcoinExchange operator=(const BitcoinExchange& cpy);
-};
 
 #endif
