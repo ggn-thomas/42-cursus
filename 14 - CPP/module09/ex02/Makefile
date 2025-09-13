@@ -1,9 +1,9 @@
 SRCS =  main.cpp \
-		BitcoinExchange.cpp \
+		PmergeMe.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
-NAME = btc
+NAME = PmergeMe
 
 CC = c++ 
 FLAGS = -Wall -Werror -Wextra -std=c++98
