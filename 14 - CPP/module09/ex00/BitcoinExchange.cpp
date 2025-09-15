@@ -63,7 +63,6 @@ int checkValidDate(std::string line){
             return 0;
         }
     }
-
     if (month > 12){
         std::cerr << "Error: bad input => " << line << std::endl << "Enter valid month!" << std::endl;
         return 0;
