@@ -27,9 +27,9 @@ int isLeapYear(int year){
 int checkValidDate(std::string line){
     if (line.empty())
         return 1;
-    std::string dayS = line.substr(5, 2);
+    std::string dayS = line.substr(8, 2);
     int day = atoi(dayS.c_str());
-    std::string monthS = line.substr(8, 2);
+    std::string monthS = line.substr(5, 2);
     int month = atoi(monthS.c_str());
     std::string yearS = line.substr(0, 4);
     int year = atoi(yearS.c_str());
@@ -63,12 +63,13 @@ int checkValidDate(std::string line){
             return 0;
         }
     }
+
     if (month > 12){
         std::cerr << "Error: bad input => " << line << std::endl << "Enter valid month!" << std::endl;
         return 0;
     }
     std::string valS = line.substr(13, line.length() - 13);
-    long val = atol(valS.c_str());
+    double val = atof(valS.c_str());
     if (val > 1000 || val < 0){
         std::cerr << "Error: bad input => " << line << std::endl;
         return 0;
@@ -166,6 +167,10 @@ int getLine(std::string file){
     std::ifstream csvFile(file.c_str());
     if (!csvFile.is_open()){
         std::cerr << "Error: could not open file." << std::endl;
+        return 0;
+    }
+    if (!getline(csvFile, line)){
+        std::cerr << "Error: the file is empty!" << std::endl;
         return 0;
     }
     if (!loadDatabase(db))

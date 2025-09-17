@@ -2,7 +2,7 @@
 
 int main(int ac, char **av){
     if (ac != 2){
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: number of arguments is incorrect!" << std::endl;
         return -1;
     }
     std::string file = av[1];

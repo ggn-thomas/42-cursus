@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stack>
+#include <cstdlib>
 
-void    rpn(const char* rpn);
+void    rpn(char* rpn);
 #endif

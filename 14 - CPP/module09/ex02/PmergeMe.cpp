@@ -1,8 +1,19 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(int ac, char **av){
+PmergeMe::PmergeMe(int ac, char **av) : _inputVector(), _inputDeque(){
     parsing(ac, av);
 };
+
+PmergeMe::PmergeMe(const PmergeMe& cpy) : _inputVector(cpy._inputVector), _inputDeque(cpy._inputDeque) {
+}
+
+PmergeMe PmergeMe::operator=(const PmergeMe& cpy) {
+    if (this != &cpy){
+        _inputDeque = cpy._inputDeque;
+        _inputVector = cpy._inputVector;
+    }
+    return *this;
+}
 
 PmergeMe::~PmergeMe(){
 }
@@ -36,7 +47,6 @@ void    PmergeMe::display(){
             std::cout << " ";
     }
 
-    // container std::vector
     std::cout << std::endl;
     std::vector<int> vectorSort = _inputVector;
     clock_t startVector = clock();
@@ -44,7 +54,6 @@ void    PmergeMe::display(){
     clock_t endVector = clock();
     double vectorTime = static_cast<double>(endVector - startVector) / CLOCKS_PER_SEC * 100000.0;
 
-    // container std::deque
     std::deque<int> dequeSort = _inputDeque;
     clock_t startDeque = clock();
     fordJohnsonSort(dequeSort);
@@ -84,12 +93,6 @@ std::vector<size_t> PmergeMe::Jacobsthal(size_t pendSize) const {
             curr = next;
         }
     }
-    // std::cout << std::endl;
-    // std::cout << "jacob: ";
-    // for (std::vector<size_t>::iterator it = jacob.begin(); it != jacob.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-
 
     std::vector<size_t> insertionOrder;
     size_t inserted = 0;
@@ -104,12 +107,6 @@ std::vector<size_t> PmergeMe::Jacobsthal(size_t pendSize) const {
     for (size_t j = pendSize; j > inserted; --j){
         insertionOrder.push_back(j - 1);
     }
-    // std::cout << std::endl;
-    // std::cout << "insertionOrder: ";
-    // for (std::vector<size_t>::iterator it = insertionOrder.begin(); it != insertionOrder.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl << std::endl;
     
     return insertionOrder;
 }
@@ -121,25 +118,8 @@ std::vector<size_t> PmergeMe::Jacobsthal(size_t pendSize) const {
 void    PmergeMe::insertPend(std::vector<int>& main, std::vector<int>& pend){
     if (pend.empty())
         return ;
-    
-    
+
     std::vector<size_t> insertionOrder = Jacobsthal(pend.size());
-
-    // std::cout << "jacob: ";
-    // for (std::vector<size_t>::iterator it = insertionOrder.begin(); it != insertionOrder.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl;
-    // std::cout << "main: ";
-    // for (std::vector<int>::iterator it = main.begin(); it != main.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl << "pend: ";
-    // for (std::vector<int>::iterator ite = pend.begin(); ite != pend.end(); ite++ ){
-    //     std::cout << *ite << " ";
-    // }
-    // std::cout << std::endl << std::endl;
-
     for (size_t i = 0; i < insertionOrder.size(); ++i){
         size_t index = insertionOrder[i];
         if (index >= pend.size())
@@ -228,24 +208,7 @@ void    PmergeMe::insertPend(std::deque<int>& main, std::deque<int>& pend){
     if (pend.empty())
         return ;
     
-    
     std::vector<size_t> insertionOrder = Jacobsthal(pend.size());
-
-    // std::cout << "jacob: ";
-    // for (std::vector<size_t>::iterator it = insertionOrder.begin(); it != insertionOrder.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl;
-    // std::cout << "main: ";
-    // for (std::vector<int>::iterator it = main.begin(); it != main.end(); it++ ){
-    //     std::cout << *it << " ";
-    // }
-    // std::cout << std::endl << "pend: ";
-    // for (std::vector<int>::iterator ite = pend.begin(); ite != pend.end(); ite++ ){
-    //     std::cout << *ite << " ";
-    // }
-    // std::cout << std::endl << std::endl;
-
     for (size_t i = 0; i < insertionOrder.size(); ++i){
         size_t index = insertionOrder[i];
         if (index >= pend.size())

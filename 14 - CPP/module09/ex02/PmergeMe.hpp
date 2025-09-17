@@ -15,6 +15,8 @@
 class PmergeMe {
     public:
         PmergeMe(int ac, char **av);
+        PmergeMe(const PmergeMe& cpy);
+        PmergeMe operator=(const PmergeMe& cpy);
         ~PmergeMe();
 
         void parsing (int ac, char **av);

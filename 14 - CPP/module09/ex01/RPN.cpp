@@ -1,10 +1,10 @@
 #include "RPN.hpp"
 
 int parsing(std::string av){
-    //int flag = 0;
-    for (size_t i = 0; i < av.length(); i++){
+
+    for (size_t i = 0; i < av.length() ; i++){
         if (!isdigit(av[i]) && av[i] != '+' && av[i] != '/' && av[i] != '-' && av[i] != '*' && av[i] != ' '){
-            std::cerr << "Error" << std::endl;
+            std::cout << "Error: bad syntax!" << std::endl;
             return 0;
         }
         if (i < av.length()){
@@ -13,16 +13,6 @@ int parsing(std::string av){
                 return 0;
             }
         }
-        // if (isdigit(av[i]))
-        //     flag = 0;
-        // if (!isdigit(av[i]) && av[i] != ' '){
-        //     if (!flag)
-        //         flag = 1;
-        //     else{
-        //         std::cerr << "Error: bad syntax" << std::endl;
-        //         return 0;
-        //     }
-        // }
     }
     return 1;
 }
@@ -39,15 +29,19 @@ int checkSyntax(std::string rpn){
     return 1;
 }
 
-void    rpn(const char* rpn){
-    if (!parsing(rpn) || !checkSyntax(rpn))
+void    rpn(char* rpn){
+    if (!parsing(rpn) || !checkSyntax(rpn)){
         return ;
-    
+    }
     std::stack<int> stack;
-    for (char c = *rpn; c != 0; c=*rpn++){
+    for (char c = *rpn; c != 0; c = *rpn++){
         switch( c ){
             case '+':
             {
+                if (stack.size() < 2){
+                    std::cerr << "Error: bad syntax" << std::endl;
+                    return ;
+                }
                 int nA1 =0;
                 nA1 = stack.top();
                 stack.pop();
@@ -58,7 +52,11 @@ void    rpn(const char* rpn){
                 break;
             }
             case '-':
-            {
+            {   
+                if (stack.size() < 2){
+                    std::cerr << "Error: bad syntax" << std::endl;
+                    return ;
+                }
                 int nS1 = stack.top();
                 stack.pop();
                 int nS2 = stack.top();
@@ -69,6 +67,10 @@ void    rpn(const char* rpn){
             }
             case '/':
             {
+                if (stack.size() < 2){
+                    std::cerr << "Error: bad syntax" << std::endl;
+                    return ;
+                }
                 int nD1 = stack.top();
                 stack.pop();
                 int nD2 = stack.top();
@@ -79,6 +81,10 @@ void    rpn(const char* rpn){
             }
             case '*':
             {
+                if (stack.size() < 2){
+                    std::cerr << "Error: bad syntax" << std::endl;
+                    return ;
+                }
                 int nM1 = stack.top();
                 stack.pop();
                 int nM2 = stack.top();
