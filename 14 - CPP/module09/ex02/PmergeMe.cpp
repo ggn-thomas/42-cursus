@@ -18,22 +18,22 @@ PmergeMe PmergeMe::operator=(const PmergeMe& cpy) {
 PmergeMe::~PmergeMe(){
 }
 
-const char* PmergeMe::handlerError::what() const throw () {
+const char* PmergeMe::HandlerError::what() const throw () {
     return "Error";
 }
 
 void    PmergeMe::parsing(int ac, char **av){
     if (ac <= 1)
-        throw (handlerError());
+        throw (HandlerError());
     long long number = 0;
     for (int i = 1; av[i]; i++){
         for (int j = 0; av[i][j]; j++){
             if (!isdigit(av[i][j]))
-                throw (handlerError());
+                throw (HandlerError());
         }
         number = atol(av[i]);
         if (number > 2147483647 || number < -2147483648)
-            throw (handlerError());
+            throw (HandlerError());
         _inputVector.push_back(number);
         _inputDeque.push_back(number);
     }

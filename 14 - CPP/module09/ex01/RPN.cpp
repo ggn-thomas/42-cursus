@@ -34,7 +34,8 @@ void    rpn(char* rpn){
         return ;
     }
     std::stack<int> stack;
-    for (char c = *rpn; c != 0; c = *rpn++){
+    for (int i = 0; rpn[i]; i++){
+        char c = rpn[i];
         switch( c ){
             case '+':
             {

@@ -37,7 +37,7 @@ class PmergeMe {
         std::vector<int>    _inputVector;
         std::deque<int>     _inputDeque;
 
-    class handlerError : public std::exception {
+    class HandlerError : public std::exception {
         public:
             const char* what() const throw();
     };
