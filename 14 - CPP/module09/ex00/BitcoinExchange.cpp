@@ -82,6 +82,12 @@ int checkValidSyntax(std::string line){
         std::cerr << "Error: bad input => (empty)" << std::endl;
         return 0;
     }
+    for (int i = 0; i < 4; i++){
+        if (!isdigit(line[i])){
+            std::cerr << "Error: bad input => " << line << std::endl;
+            return 0;
+        }
+    }
     if (line[4] != '-' || line[7] != '-' || line[10] != ' ' || line[11] != '|' || line[12] != ' '){
         size_t sep = line.find('-');
         std::string yearS = line.substr(0, sep);

@@ -76,6 +76,10 @@ void    rpn(char* rpn){
                 stack.pop();
                 int nD2 = stack.top();
                 stack.pop();
+                if (nD1 == 0){
+                    std::cerr << "You cannot divise by 0! "<< std::endl;
+                    return ;
+                }
                 int resultD = nD2/nD1;
                 stack.push(resultD);
                 break;
@@ -105,6 +109,10 @@ void    rpn(char* rpn){
                 break;
             }
         }
+    }
+    if (stack.size() != 1){
+        std::cerr << "Calculation is incorrect!" << std::endl;
+        return ;
     }
     int resultFinal = stack.top();
     std::cout << resultFinal << std::endl;
