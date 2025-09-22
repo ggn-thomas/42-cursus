@@ -158,6 +158,8 @@ void    findPrice(std::string line, std::map<std::string, double>& db){
 }
 
 int parsing(std::string line, std::map<std::string, double> &db){
+    if (line == "date | value")
+        return 1;
     if (!checkValidSyntax(line))
         return 1;
     if (!checkValidDate(line))
@@ -173,10 +175,6 @@ int getLine(std::string file){
     std::ifstream csvFile(file.c_str());
     if (!csvFile.is_open()){
         std::cerr << "Error: could not open file." << std::endl;
-        return 0;
-    }
-    if (!getline(csvFile, line)){
-        std::cerr << "Error: the file is empty!" << std::endl;
         return 0;
     }
     if (!loadDatabase(db))

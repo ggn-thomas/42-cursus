@@ -26,6 +26,8 @@ void    PmergeMe::parsing(int ac, char **av){
     if (ac <= 1)
         throw (HandlerError());
     long long number = 0;
+    if (av[1][0] == 0)
+        throw(HandlerError());
     for (int i = 1; av[i]; i++){
         for (int j = 0; av[i][j]; j++){
             if (!isdigit(av[i][j]))
